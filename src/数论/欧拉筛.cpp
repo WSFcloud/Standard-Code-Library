@@ -1,7 +1,7 @@
 #include <vector>
 using namespace std;
-
 vector<int> minp, primes;
+
 void sieve(int n) {
     minp.assign(n + 1, 0);
     primes.clear();

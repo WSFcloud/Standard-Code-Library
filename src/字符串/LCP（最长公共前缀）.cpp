@@ -41,13 +41,10 @@ int extend(int p, int c) {
 int main() {
     ios::sync_with_stdio(false);
     cin.tie(nullptr);
-
     fill(nxt[0], nxt[0] + 26, 1);
     len[0] = -1;
-
     int N;
     cin >> N;
-
     vector<string> S(N);
     for (int i = 0; i < N; i++) {
         cin >> S[i];

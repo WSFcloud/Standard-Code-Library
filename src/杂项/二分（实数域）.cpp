@@ -1,12 +1,14 @@
 #include <iostream>
 #include <algorithm>
-#include <functional>
 using namespace std;
 using real = long double;
 constexpr real EPS = 1E-7;
 
+bool check(int i) {
+    // 检查逻辑
+}
 // 查找满足条件check(mid)的最大值（前驱）
-void bsearch_ternary_upper(function<bool(double)> check) {
+void bsearch_ternary_upper() {
     double lo = 0;
     double hi = 1E12;
     while (hi - lo > max(1.0, lo) * EPS) {
@@ -20,7 +22,7 @@ void bsearch_ternary_upper(function<bool(double)> check) {
     cout << lo << "\n";
 }
 // 查找满足条件check(mid)的最小值（后继）
-void bsearch_ternary_lower(function<bool(double)> check) {
+void bsearch_ternary_lower() {
     double lo = 0;
     double hi = 1E12;
     while (hi - lo > max(1.0, lo) * EPS) {
@@ -33,7 +35,6 @@ void bsearch_ternary_lower(function<bool(double)> check) {
     }
     cout << lo << "\n";
 }
-
 int main() {
     auto check = [&](double x) {
         // 检查逻辑

@@ -82,6 +82,16 @@
 \XeTeXlinebreaklocale "zh"                      % 设置断行语言环境为中文
 \XeTeXlinebreakskip = 0pt plus 1pt              % 设置中文断行时的跳跃间距，默认允许0pt到1pt的弹性空间
 
+% 设置itemize环境的样式
+\setitemize[1]{                                 % 适用于第一层无序列表环境
+    itemsep=3pt,                                % 列表项之间的间距
+    partopsep=0pt,                              % 列表与正文之间的额外间距
+    parsep=\parskip,                            % 列表段落间距，设置为段间距
+    % topsep=5pt,                                 % 列表与前后文本的距离
+    % itemindent=1em,                             % 列表项的缩进
+    % leftmargin=3pt                              % 列表的左边距
+}
+
 % minted配色设置
 \definecolor{light-gray}{gray}{0.9}             % 定义浅灰色，灰度值为0.9
 \definecolor{black}{gray}{0.0}                  % 定义黑色，灰度值为0.0
@@ -227,8 +237,6 @@
     \inputminted{cpp}{../src/数学/矩阵.cpp}
 
     \subsection{插值}
-        \subsubsection{拉格朗日插值}
-
         \subsubsection{牛顿插值}
         \label{NewtonInterpolation}
         牛顿插值的原理是 \textbf{二项式反演}。
@@ -251,7 +259,9 @@
         
         注意到预处理 $r_i$ 的式子满足卷积形式，必要时可以用 FFT 优化至 $O(k\log k)$。
 
-
+        \subsubsection{拉格朗日插值}
+        给定 $n$ 组 $(x_i, y_i)$，求 $f(k) \bmod p$
+        \inputminted{cpp}{../src/数学/拉格朗日插值.cpp}
     
     \subsection{常见数列}
     查表参见\detailedref{OEIS}。
@@ -266,7 +276,7 @@
     
             \paragraph{通项公式}
     
-            $\phi = \frac {1 + \sqrt 5} 2, \; \hat\phi = \frac {1 - \sqrt 5} 2$, $F_n = \frac {\phi^n - {\hat\phi} ^ n} {\sqrt 5}, \; L_n = \phi ^ n + {\hat\phi} ^ n$
+            $\phi = \frac {1 + \sqrt 5} 2, \; \hat\phi = \frac {1 - \sqrt 5} 2, F_n = \frac {\phi^n - {\hat\phi} ^ n} {\sqrt 5}, \; L_n = \phi ^ n + {\hat\phi} ^ n$
     
             实际上有
             $$\frac {L_n + F_n \sqrt 5} 2 = \left( \frac {1 + \sqrt 5} 2 \right) ^ n$$
@@ -497,8 +507,12 @@
 \newpage
 \section{数论}
     \subsection{扩展欧几里得（exgcd）}
-    求 $x, y$ 使得 $ax+by=gcd(a, b)$ ，返回值为 $gcd(a, b)$
+    求 $x, y$ 使得 $ax+by=\gcd(a, b)$ ，返回值为 $\gcd(a, b)$
     \inputminted{cpp}{../src/数论/扩展欧几里得（exgcd）.cpp}
+
+    \subsection{费马小定理求逆元}
+    使用费马小定理与快速幂。单次计算的复杂度即为快速幂的复杂度 $O(log x)$。限制： $MOD$ 必须是质数，且需要满足 $x$ 与 $MOD$ 互质。
+    \inputminted{cpp}{../src/数论/费马小定理求逆元.cpp}
 
     \subsection{欧拉筛}
     筛选 $[0,n]$ 区间上的素数
