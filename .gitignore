@@ -1,0 +1,15 @@
+*
+!*/
+!Makefile
+!README.md
+!.gitignore
+!.clang-format
+!LICENSE
+!src/
+!/src/**/*.cpp
+!/src/**/*.py
+!/latex/images/**
+!/latex/fonts/**
+!/latex/pdf/*.pdf
+!/latex/main.tex
+!/.github/**

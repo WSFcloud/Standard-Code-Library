@@ -1,0 +1,37 @@
+name: Build LaTeX document
+on: [push]
+jobs:
+  compile_latex:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+      repository-projects: write
+    steps:
+      - name: Set up Git repository
+        uses: actions/checkout@v4
+      - name: Compile LaTeX document
+        uses: xu-cheng/latex-action@v3
+        with:
+          working_directory: ./latex
+          root_file: ./main.tex
+          pre_compile: "cp ./fonts/*.ttf /usr/share/fonts && fc-cache -f -v"
+          post_compile: "xelatex -shell-escape main.tex && mv main.pdf Standard-Code-Library.pdf"
+          latexmk_use_xelatex: true
+          latexmk_shell_escape: true
+      - name: Delete existing release
+        run: |
+            if gh release view PDF --repo $GITHUB_REPOSITORY; then
+              gh release delete PDF --cleanup-tag --yes --repo $GITHUB_REPOSITORY
+            else
+              echo "PDF not found. Skipping delete step."
+            fi
+        env:
+          GH_TOKEN: ${{ github.token }}
+      - name: Release PDF
+        uses: ncipollo/release-action@v1
+        with:
+          tag: "PDF"
+          makeLatest: "true"
+          draft: "false"
+          artifacts: "./latex/Standard-Code-Library.pdf"
