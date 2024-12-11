@@ -2,7 +2,6 @@
 #include <string>
 using namespace std;
 
-// 返回字符串s的前缀函数
 vector<int> kmp(string s) {
     int n = s.size();
     vector<int> f(n + 1);
