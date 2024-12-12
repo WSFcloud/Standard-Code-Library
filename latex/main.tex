@@ -75,7 +75,7 @@
 \setCJKsansfont{KaiTi}[Scale=1.0]               % 设置中文无衬线字体为“楷体”
 
 %配置西文字体
-\setmainfont{TeX Gyre Pagella}[Scale=1.0]       % 设置西文主字体为TeX Gyre Pagella
+% \setmainfont{TeX Gyre Pagella}[Scale=1.0]       % 设置西文主字体为TeX Gyre Pagella
 \setmonofont{Cascadia Mono}[Scale=1.0]          % 设置西文等宽字体为Cascadia Mono
 
 % 配置XeTeX的中文断行行为
@@ -227,13 +227,12 @@
     \subsection{快速幂}
     计算 $a^b \bmod p$
     \inputminted{cpp}{../src/数学/快速幂.cpp}
-
-    \subsection{FFT}
-    传入数组 $a$ ，$a_i$ 表示多项式 $\sum\limits_{i=0}^{n} a_ix^i$ 的系数，$n$ 为FFT长度，必须是 $2^k$，$t$ 为变换方向，1为FFT，-1为IFFT。
-    \inputminted{cpp}{../src/数学/FFT.cpp}
-
-    \subsection{矩阵}
-    \inputminted{cpp}{../src/数学/矩阵.cpp}
+    \subsection{多项式}
+        \subsubsection{FFT}
+        传入数组 $a$ ，$a_i$ 表示多项式 $\sum\limits_{i=0}^{n} a_ix^i$ 的系数，$n$ 为FFT长度，必须是 $2^k$，$t$ 为变换方向，1为FFT，-1为IFFT。
+        \inputminted{cpp}{../src/数学/FFT.cpp}
+        
+        \subsubsection{NTT}
 
     \subsection{插值}
         \subsubsection{牛顿插值}
@@ -262,6 +261,9 @@
         给定 $n$ 组 $(x_i, y_i)$，求 $f(k) \bmod p$
         \inputminted{cpp}{../src/数学/拉格朗日插值.cpp}
     
+    \subsection{矩阵}
+    \inputminted{cpp}{../src/数学/矩阵.cpp}    
+
     \subsection{常见数列}
     查表参见\detailedref{OEIS}。
         \subsubsection{斐波那契数列、卢卡斯数}
@@ -539,6 +541,14 @@
 
 \newpage
 \section{动态规划}
+    \subsection{背包DP}
+    \subsubsection{0-1背包}
+    有 $N$ 件物品和一个容量为 $V$ 的背包。放入第 $i$ 件物品耗费的费用是 $c_i$，得到的价值是 $w_i$。求解将哪些物品装入背包可使价值总和最大。
+    $F[i, v]$ 表示前 $i$ 件物品放入一个容量为 $v$ 的背包可以获得的最大价值。状态转移方程为：
+    $$F[i, v]=\max\left\{F[i-1, v], F[i-1, v-c_i]+ w_i\right\}$$
+    时间复杂度与空间复杂度均为 $O(VN)$ 可以对空间优化到 $O(V)$ ：
+    $$F[v]=\max\left\{F[v], F[v-c_i]+w_i\right\}$$
+    \inputminted{cpp}{../src/动态规划/0-1背包.cpp}
 
 \newpage
     \section{字符串}
@@ -567,7 +577,7 @@
     \inputminted{cpp}{../src/杂项/字符调整.cpp}
 
     \subsection{xorshift伪随机数生成算法}
-    $k1, k2$为随机数种子，生成 $[0, n)$区间上的伪随机数。
+    $k1, k2$ 为随机数种子，生成 $[0, n)$ 区间上的伪随机数。
     \inputminted{cpp}{../src/杂项/xorshift伪随机数生成算法.cpp}
 
     \subsection{常用库函数重载}
