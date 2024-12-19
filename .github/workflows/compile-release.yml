@@ -32,3 +32,6 @@ jobs:
           set -x
           mv ./latex/main.pdf ./latex/Standard-Code-Library.pdf
           gh release create "${{ steps.create_tag.outputs.tag_name }}" ./latex/Standard-Code-Library.pdf
+        env:
+          GH_TOKEN: ${{ github.token }}
+          RELEASE_NAME: "Release ${{ steps.create_tag.outputs.tag_name }}"
