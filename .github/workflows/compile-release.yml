@@ -16,22 +16,19 @@ jobs:
           working_directory: ./latex
           root_file: ./main.tex
           pre_compile: "cp ./fonts/*.ttf /usr/share/fonts && fc-cache -f -v"
-          post_compile: "xelatex -shell-escape main.tex && mv main.pdf Standard-Code-Library.pdf"
           latexmk_use_xelatex: true
           latexmk_shell_escape: true
-      - name: Delete existing release
+      - name: Create Tag
+        id: create_tag
         run: |
-            if gh release view PDF --repo $GITHUB_REPOSITORY; then
-              gh release delete PDF --cleanup-tag --yes --repo $GITHUB_REPOSITORY
-            else
-              echo "PDF not found. Skipping delete step."
-            fi
-        env:
-          GH_TOKEN: ${{ github.token }}
-      - name: Release PDF
-        uses: ncipollo/release-action@v1
-        with:
-          tag: "PDF"
-          makeLatest: "true"
-          draft: "false"
-          artifacts: "./latex/Standard-Code-Library.pdf"
+          tag_name=$(TZ="Asia/Shanghai" date +"v%Y%m%d_%H%M")
+          if [[ -n "${{github.event.inputs.tag_name}}" ]]; then tag_name=${{github.event.inputs.tag_name}}; fi
+          git tag $tag_name
+          git push --tags
+          echo "tag_name=$tag_name" >> $GITHUB_OUTPUT
+      - name: Create Release
+        shell: bash
+        run: |
+          set -x
+          mv ./latex/main.pdf ./latex/Standard-Code-Library.pdf
+          gh release create "${{ steps.create_tag.outputs.tag_name }}" ./latex/Standard-Code-Library.pdf
