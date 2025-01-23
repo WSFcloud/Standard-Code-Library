@@ -1,0 +1,37 @@
+name: Build LaTeX document
+on: [push]
+jobs:
+  compile_latex:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+      repository-projects: write
+    steps:
+      - name: Set up Git repository
+        uses: actions/checkout@v4
+      - name: Compile LaTeX document
+        uses: xu-cheng/latex-action@v3
+        with:
+          working_directory: ./latex
+          root_file: ./main.tex
+          pre_compile: "cp ./fonts/*.ttf /usr/share/fonts && fc-cache -f -v"
+          latexmk_use_xelatex: true
+          latexmk_shell_escape: true
+      - name: Create Tag
+        id: create_tag
+        run: |
+          tag_name=$(TZ="Asia/Shanghai" date +"v%Y%m%d_%H%M")
+          if [[ -n "${{github.event.inputs.tag_name}}" ]]; then tag_name=${{github.event.inputs.tag_name}}; fi
+          git tag $tag_name
+          git push --tags
+          echo "tag_name=$tag_name" >> $GITHUB_OUTPUT
+      - name: Create Release
+        shell: bash
+        run: |
+          set -x
+          mv ./latex/main.pdf ./latex/Standard-Code-Library.pdf
+          gh release create "${{ steps.create_tag.outputs.tag_name }}" ./latex/Standard-Code-Library.pdf
+        env:
+          GH_TOKEN: ${{ github.token }}
+          RELEASE_NAME: "Release ${{ steps.create_tag.outputs.tag_name }}"
