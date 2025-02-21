@@ -740,6 +740,27 @@ $k1, k2$ 为随机数种子，生成 $[0, n)$ 区间上的伪随机数。
     \subsubsection{编译器位数测试}
 
     \subsubsection{评测机环境测试}
+    \begin{itemize}
+        \item CPU型号检测
+        \begin{minted}{cpp}
+            #include <iostream>
+            #include <stdint.h>
+            #include <cpuid.h>
+            using namespace std;
+
+            int main() {
+                uint32_t data[4];
+                char str[48];
+                for (int i = 0; i < 3; ++i) {
+                    __cpuid_count(0x80000002 + i, 0, data[0], data[1], data[2], data[3]);
+                    for (int j = 0; j < 4; ++j) {
+                        reinterpret_cast<uint32_t *>(str)[i * 4 + j] = data[j];
+                    }
+                }
+                cout << str << endl;
+            }
+        \end{minted}
+    \end{itemize}
 
     \subsubsection{上机环境测试}
     \begin{itemize}
