@@ -780,6 +780,21 @@ $k1, k2$ 为随机数种子，生成 $[0, n)$ 区间上的伪随机数。
         \item \mintinline{bash}{-fno-ms-extensions}: 关闭一些和MSVC保持一致的特性, 例如, 不标返回值类型的函数会报CE而不是默认为\mintinline{cpp}{int}。
     \end{itemize}
 
+    \subsubsection{编译运行}
+    VS Code无插件时快速编译运行。
+    \begin{minted}{bash}
+        #!/bin/bash
+        g++ $1.cpp -o $1 -O2 -std=c++20 -Wall -D__LOCAL__ -g
+        if [ $? -eq 0 ]; then
+            ./$1
+        fi
+    \end{minted}
+    终端中使用：
+    \begin{minted}{bash}
+        sudo chmod +x run.sh
+        ./run.sh test        
+    \end{minted}
+
 \subsection{对拍}
 
 \subsection{VS Code相关}
