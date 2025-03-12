@@ -725,9 +725,10 @@ $k1, k2$ 为随机数种子，生成 $[0, n)$ 区间上的伪随机数。
     \subsubsection{技巧}
     \begin{enumerate}
         \item 使用宏在调试时快速输出变量的名字和值
-        \begin{minted}{cpp}
-            #define DEBUG(x) cout << #x << " = " << x << endl
-        \end{minted}
+        \inputminted{cpp}{../src/附录/C++/debug宏.cpp}
+
+        \item 二进制相关
+        \inputminted{cpp}{../src/附录/C++/二进制相关.cpp}
     \end{enumerate}
     
     \subsubsection{常见错误}
@@ -742,24 +743,7 @@ $k1, k2$ 为随机数种子，生成 $[0, n)$ 区间上的伪随机数。
     \subsubsection{评测机环境测试}
     \begin{itemize}
         \item CPU型号检测
-        \begin{minted}{cpp}
-            #include <iostream>
-            #include <stdint.h>
-            #include <cpuid.h>
-            using namespace std;
-
-            int main() {
-                uint32_t data[4];
-                char str[48];
-                for (int i = 0; i < 3; ++i) {
-                    __cpuid_count(0x80000002 + i, 0, data[0], data[1], data[2], data[3]);
-                    for (int j = 0; j < 4; ++j) {
-                        reinterpret_cast<uint32_t *>(str)[i * 4 + j] = data[j];
-                    }
-                }
-                cout << str << endl;
-            }
-        \end{minted}
+        \inputminted{cpp}{../src/附录/环境测试/CPU型号检测.cpp}
     \end{itemize}
 
     \subsubsection{上机环境测试}
@@ -782,13 +766,7 @@ $k1, k2$ 为随机数种子，生成 $[0, n)$ 区间上的伪随机数。
 
     \subsubsection{编译运行}
     VS Code无插件时快速编译运行。
-    \begin{minted}{bash}
-        #!/bin/bash
-        g++ $1.cpp -o $1 -O2 -std=c++20 -Wall -D__LOCAL__ -g
-        if [ $? -eq 0 ]; then
-            ./$1
-        fi
-    \end{minted}
+    \inputminted{bash}{../src/附录/环境测试/编译运行脚本.sh}
     终端中使用：
     \begin{minted}{bash}
         sudo chmod +x run.sh
@@ -884,7 +862,8 @@ $k1, k2$ 为随机数种子，生成 $[0, n)$ 区间上的伪随机数。
         \hline
     \end{tabular}
 \end{table}
-    
+
+注：39为单引号；45为减号；95为下划线；96为重音符（即键盘左上角数字1左边的键）。
 
 \newpage
 \subsection{OEIS}
