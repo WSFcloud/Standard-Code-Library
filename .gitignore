@@ -8,6 +8,8 @@
 !src/
 !/src/**/*.cpp
 !/src/**/*.py
+!/src/**/*.sh
+!/src/**/*.bat
 !/latex/images/**
 !/latex/fonts/**
 !/latex/pdf/*.pdf
