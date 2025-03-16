@@ -288,7 +288,7 @@
         \item $x + y = (x \oplus y) + 2(x \& y) $
     \end{enumerate} 
 
-    \subsubsection{GCC 内建函数}
+    \subsection{GCC 内建函数}
     这些函数都可以在函数名末尾添加 \mintinline{cpp}|l| 或 \mintinline{cpp}|ll| （如\mintinline{cpp}|__builtin_popcountll|）来使参数类型变为 \mintinline{cpp}|(unsigned) long| 或 \mintinline{cpp}|(unsigned) long long| （返回值仍然是 \mintinline{cpp}|int| 类型）。 例如，我们有时候希望求出一个数以 2 为底的对数，如果不考虑 0 的特殊情况，就相当于这个数二进制的位数 -1 ，而一个数 $n$ 的二进制表示的位数可以使用 \mintinline{cpp}|32-__builtin_clz(n)| 表示，因此 \mintinline{cpp}|31-__builtin_clz(n)| 就可以求出 $n$ 以 2 为底的对数。
     \begin{enumerate}
         \item \mintinline{cpp}|int __builtin_ffs(int x)| ：返回 x 的二进制末尾最后一个 1 的位置，位置的编号从 1 开始（最低位编号为 1 ）。当 x 为 0 时返回 0 。
