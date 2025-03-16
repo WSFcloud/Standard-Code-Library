@@ -8,7 +8,7 @@ int n, m, s;
 struct edge {
     int to, weight;
 };
-void dijkstra(vector<vector<edge>> graph) {
+void dijkstra(vector<vector<edge>> &graph) {
     dis.assign(n + 1, INF);
     vis.assign(n + 1, 0);
     dis[s] = 0;

@@ -1,4 +1,4 @@
-vector<int> manacher(string s) {
+vector<int> manacher(string &s) {
     string t = "#";
     for (auto c : s) {
         t += c;

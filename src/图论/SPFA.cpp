@@ -9,7 +9,7 @@ int n, m, s;
 struct edge {
     int to, weight;
 };
-bool spfa(vector<vector<edge>> graph) {
+bool spfa(vector<vector<edge>> &graph) {
     dis.assign(n + 1, INF);
     vis.assign(n + 1, 0);
     cnt.assign(n + 1, 0);

@@ -2,7 +2,7 @@
 #include <string>
 using namespace std;
 
-vector<int> kmp(string s) {
+vector<int> kmp(string &s) {
     int n = s.size();
     vector<int> f(n + 1);
     for (int i = 1, j = 0; i < n; i++) {
