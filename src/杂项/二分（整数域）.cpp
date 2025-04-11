@@ -16,7 +16,7 @@ void bsearch_upper() {
             hi = mid - 1;
         }
     }
-    cout << lo << "\n";
+    cout << lo << endl;
 }
 // 查找满足条件check(mid)的最小值（后继）
 void bsearch_lower() {
@@ -29,5 +29,5 @@ void bsearch_lower() {
             lo = mid + 1;
         }
     }
-    cout << lo << "\n";
+    cout << lo << endl;
 }

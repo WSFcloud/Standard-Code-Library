@@ -19,7 +19,7 @@ void bsearch_ternary_upper() {
             hi = mid;
         }
     }
-    cout << lo << "\n";
+    cout << lo << endl;
 }
 // 查找满足条件check(mid)的最小值（后继）
 void bsearch_ternary_lower() {
@@ -33,7 +33,7 @@ void bsearch_ternary_lower() {
             lo = mid;
         }
     }
-    cout << lo << "\n";
+    cout << lo << endl;
 }
 int main() {
     auto check = [&](double x) {

@@ -1,7 +1,7 @@
 using ll = long long;
 
 // 普通快速幂
-int power(int a, ll b, int p) {
+int power(ll a, ll b, int p) {
     int res = 1;
     for (; b; b /= 2, a = 1LL * a * a % p) {
         if (b % 2) {
