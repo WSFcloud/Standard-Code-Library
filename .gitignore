@@ -10,6 +10,7 @@
 !/src/**/*.py
 !/src/**/*.sh
 !/src/**/*.bat
+!/src/**/*.json
 !/latex/images/**
 !/latex/fonts/**
 !/latex/pdf/*.pdf
