@@ -190,6 +190,29 @@
     % tab={\ | \ \ },           % 制表符替代符号，显示为竖线和空格
 }
 
+\setminted[json]{
+    style=solarized-light,      % 代码高亮的配色方案设置为Solarized Light
+    mathescape,                 % 支持代码中嵌入数学公式，公式需用 $...$ 包裹
+    linenos,                    % 在代码块中显示行号
+    autogobble,                 % 自动移除代码块前多余的缩进
+    baselinestretch=1.0,        % 设置代码行距为1.0倍
+    tabsize=4,                  % 设置制表符宽度为4个空格
+    fontsize=\normalsize,       % 设置代码块的字体大小为正常大小
+    %bgcolor=Gray,              % 设置代码块的背景颜色为灰色
+    frame=single,               % 在代码块外绘制单线边框
+    framesep=1mm,               % 边框与代码内容之间的间距为1mm
+    framerule=0.3pt,            % 边框线宽设置为0.3pt
+    numbersep=1mm,              % 行号与代码内容之间的间距为1mm
+    breaklines=true,            % 允许代码自动换行
+    breakbytoken=false,         % 禁止按标记（如空格或标点）进行换行
+    % breaksymbolsepleft=2pt,   % 换行符号左侧的间距为2pt
+    % breaksymbolleft={},       % 禁用左侧换行符号
+    % breaksymbolright={}       % 禁用右侧换行符号
+    % showtabs=true,            % 显示制表符为特殊符号
+    % tabcolor=light-gray,      % 制表符显示为浅灰色
+    % tab={\ | \ \ },           % 制表符替代符号，显示为竖线和空格
+}
+
 % 标题 & 作者信息 & 编译日期
 \title{\vspace{20cm}\fontsize{50pt}{20pt}\selectfont{Standard Code Library}\\\fontsize{24pt}{\baselineskip}\selectfont{}\vspace{0.1cm}}
 \author{\fontsize{15pt}{\baselineskip}\selectfont{XXX University}\vspace{0.2cm}\\\fontsize{12pt}{\baselineskip}\selectfont{WSFcloud}}
@@ -804,7 +827,7 @@ $k1, k2$ 为随机数种子，生成 $[0, n)$ 区间上的伪随机数。
             ./run.sh test        
         \end{minted}
         \item Windows
-        \inputminted{bash}{../src/附录/环境测试/Windows编译运行脚本.bat}
+        \inputminted{batch}{../src/附录/环境测试/Windows编译运行脚本.bat}
         终端中使用：
         \begin{minted}{bash}
             ./run test.cpp     
@@ -823,6 +846,13 @@ $k1, k2$ 为随机数种子，生成 $[0, n)$ 区间上的伪随机数。
     \subsubsection{设置}
 
     \subsubsection{调试配置}
+    \begin{itemize}
+        \item Windows\\
+        tasks.json
+        \inputminted{json}{../src/附录/VSCode/Windows-tasks.json}
+        launch.json
+        \inputminted{json}{../src/附录/VSCode/Windows-launch.json}
+    \end{itemize}
 
     \subsubsection{常用快捷键}
 
