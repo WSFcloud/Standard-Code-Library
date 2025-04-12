@@ -1,11 +1,9 @@
-#include <vector>
-#include <cmath>
-#include <complex>
+#include <bits/stdc++.h>
 using namespace std;
 using cp = complex<double>;
 const double PI = acos(-1.0);
-vector<cp> omega[25];
 
+vector<cp> omega[25];
 void fft_init(int n) {
     for (int k = 2, d = 0; k <= n; k *= 2, d++) {
         omega[d].resize(k + 1);
@@ -20,7 +18,6 @@ void fft(cp *a, int n, int t) {
         do {
             j ^= (k >>= 1);
         } while (j < k);
-
         if (i < j) {
             swap(a[i], a[j]);
         }
@@ -40,4 +37,34 @@ void fft(cp *a, int n, int t) {
             a[i] /= n;
         }
     }
+}
+void solve() {
+    int n, m;
+    cin >> n >> m;
+    int len = 1, r = n + m + 1;
+    while (len < r) {
+        len <<= 1;
+    }
+    fft_init(len);
+    vector<cp> A(len), B(len);
+    for (int i = 0; i <= n; i++) {
+        int x;
+        cin >> x;
+        A[i] = x;
+    }
+    for (int i = 0; i <= m; i++) {
+        int x;
+        cin >> x;
+        B[i] = x;
+    }
+    fft(A.data(), len, 1);
+    fft(B.data(), len, 1);
+    for (int i = 0; i < len; i++) {
+        A[i] *= B[i];
+    }
+    fft(A.data(), len, -1);
+    for (int i = 0; i < n + m + 1; i++) {
+        cout << (int)(A[i].real() + 0.5) << " ";
+    }
+    cout << endl;
 }
