@@ -591,6 +591,10 @@
     对模数 $p$ 没有限制，复杂度为 $O(\log x)$ ，常数比费马小定理求逆元大一些。
     \inputminted{cpp}{../src/数论/扩展欧几里得求逆元.cpp}
 
+    \subsubsection{$O(n)$ 预处理逆元}
+    $\text{inv}[i] = (p - \left\lfloor \frac{p}{i} \right\rfloor) \cdot \text{inv}[p \bmod i] \mod p$
+    \inputminted{cpp}{../src/数论/O(n)预处理逆元.cpp}
+
 \subsection{欧拉筛}
 筛选 $[0,n]$ 区间上的素数。
 \inputminted{cpp}{../src/数论/欧拉筛.cpp}
@@ -721,7 +725,7 @@
     求解\textbf{非负权图}上单源最短路径。使用优先队列实现时间复杂度为 $O(m \log m)$。
     \inputminted{cpp}{../src/图论/Dijkstra.cpp}
 
-    \subsubsection{k 短路}
+    \subsubsection{$k$ 短路}
 
 \subsection{最小生成树}
     \subsubsection{Prim 算法}
