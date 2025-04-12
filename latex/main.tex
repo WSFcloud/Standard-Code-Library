@@ -238,9 +238,11 @@
 \renewcommand{\cftsubsecdotsep}{4}                          % 控制subsection标题和页码之间点线的间隔
 \renewcommand{\cftsecfont}{\large\bfseries}                 % 设置section的字体为大号加粗
 \begin{center}
-    \tableofcontents
-    % \afterpage{\null\thispagestyle{empty}\newpage}          % 如果目录页为奇数创建空白页
+    \tableofcontents         
 \end{center}
+\ifodd\value{page}
+    \afterpage{\null\thispagestyle{empty}\newpage}          % 如果目录页为奇数则创建空白页
+\fi
 
 % 正文
 \newpage
