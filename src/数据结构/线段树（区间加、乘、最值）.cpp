@@ -3,7 +3,7 @@
 using namespace std;
 using ll = long long;
 
-int mod;
+constexpr ll mod = 998244353;
 struct Info {
     ll sum;
     ll maxv = 0;
@@ -11,6 +11,7 @@ struct Info {
         return {(sum + info.sum) % mod, max(maxv, info.maxv)};
     }
 };
+// 线段为0 base，树为1 base
 struct SegmentTree {
     int n;
     vector<ll> addtag, multag;
@@ -109,7 +110,7 @@ struct SegmentTree {
     void modify(int x, const Info &v) {
         modify(1, 0, n, x, v);
     }
-    void build(int p, int l, int r, const vector<int> &a) {
+    void build(int p, int l, int r, const vector<ll> &a) {
         if (r - l == 1) {
             info[p] = {a[l], a[l]};
             return;
@@ -119,7 +120,8 @@ struct SegmentTree {
         build(2 * p + 1, mid, r, a);
         pull(p);
     }
-    void build(const vector<int> &a) {
+    // 在给定数组a上建立线段树
+    void build(const vector<ll> &a) {
         build(1, 0, n, a);
     }
 };
