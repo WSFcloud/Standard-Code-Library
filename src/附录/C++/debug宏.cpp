@@ -1,1 +1,1 @@
-#define DEBUG(x) cout << #x << " = " << x << endl
+#define debug(x) cerr << #x << " = " << x << endl
