@@ -58,7 +58,7 @@
 \setlength{\parindent}{0pt}
 
 % 页眉和页脚设置
-\fancypagestyle{fancy} {                        % 定义一个名为"fancy"的页眉页脚样式
+\fancypagestyle{fancy} {                        % 定义一个名为 fancy 的页眉页脚样式
 	\chead{Standard Code Library}               % 页眉中间显示的内容
 	\lhead{\nouppercase\leftmark}               % 页眉左侧显示章节标题（首字母不转换为大写）
 	\rhead{\nouppercase\rightmark}              % 页眉右侧显示小节标题（首字母不转换为大写）
@@ -224,7 +224,7 @@
 % 标题页面
 \begin{titlepage}
 	\ThisCenterWallPaper{}{./images/cover.png}
-	\fontspec{TeX Gyre Pagella}\selectfont{\color{black}{\maketitle}}
+    \fontspec[Path=fonts/]{Baskervville-Regular.ttf}\selectfont{\color{black}{\maketitle}}
 	\thispagestyle{empty}
 	\afterpage{\null\thispagestyle{empty}\newpage} % 创建空白页
 \end{titlepage}
