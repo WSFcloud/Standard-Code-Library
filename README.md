@@ -8,9 +8,7 @@
 
 ## 编译LaTeX
 
-1. 安装/latex/fonts内的字体。
-
-2. 安装Python pygments库。
+1. 安装Python pygments库。
 ```bsah
 pip install pygments
 ```
