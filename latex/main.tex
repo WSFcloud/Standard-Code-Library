@@ -756,6 +756,10 @@
 \subsection{快读}
 \inputminted{cpp}{../src/杂项/快读.cpp}
 
+\subsection{读入字符串}
+读入多行以某个分隔符分割的字符串，如果已经使用\mintinline{cpp}|cin|读入，要先使用\mintinline{cpp}|cin.get();|读换行符。
+\inputminted{cpp}{../src/杂项/读入字符串.cpp}
+
 \subsection{高精度}
 输入使用\mintinline{cpp}|cin >> a;|，输出使用\mintinline{cpp}|a.print();|。输入不能自动去掉前导 0，可以先读入到 char 数组，去掉前导 0，再用构造函数。
 \inputminted{cpp}{../src/杂项/高精度.cpp}
