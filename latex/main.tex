@@ -335,7 +335,12 @@
     
     常见性质：
     \begin{enumerate}
-        \item $x + y = (x \oplus y) + 2(x \mathrel{\&} y) $
+        \item $x \oplus x = 0$
+        \item $x \oplus 0 = x$
+        \item $x \oplus y \oplus z = x \oplus z \oplus y$
+        \item $(x \oplus y) \oplus z = x \oplus (y \oplus z)$
+        \item $x \oplus y = z \Leftrightarrow x = z \oplus y$
+        \item $x + y = (x \oplus y) + 2(x \mathrel{\&} y)$
     \end{enumerate} 
 
     \subsubsection{GCC 内建函数}
@@ -822,7 +827,19 @@ $k1, k2$ 为随机数种子，生成 $[0, n)$ 区间上的伪随机数。
 \section{附录}
 \subsection{C++}
     \subsubsection{STL与库函数}
-
+    \begin{enumerate}
+        \item 容器库
+        \item 字符库
+        \item 文本处理库
+        \item 数值库
+        \item 日期时间库
+        \item 工具库
+        \begin{itemize}
+            \item std::function\\
+            不建议使用，std::function 的类型擦除通常需要分配额外内存，同时间接调用带来的寻址操作会进一步降低性能，应当使用 Lambda 表达式。
+            \inputminted{cpp}{../src/附录/C++/std::function.cpp}
+        \end{itemize}
+    \end{enumerate}
     \subsubsection{技巧}
     \begin{enumerate}
         \item 使用宏在调试时快速输出变量的名字和值
