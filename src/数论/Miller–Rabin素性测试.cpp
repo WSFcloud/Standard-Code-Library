@@ -7,7 +7,7 @@ bool check(ll n, ll b) { // b: base
         a /= 2;
         k++;
     }
-    ll t = power(b, a, n); // 这里的快速幂函数需要写O(1)快速乘
+    ll t = qpow(b, a, n); // 这里的快速幂函数需要写O(1)快速乘
     if (t == 1 || t == n - 1) {
         return true;
     }
