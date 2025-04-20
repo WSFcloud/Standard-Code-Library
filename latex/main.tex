@@ -259,10 +259,29 @@
     \inputminted{cpp}{../src/数学/FFT.cpp}
     
     \subsubsection{NTT}
-
-    \subsubsection{分治 FFT}
+    $n$ 是 DFT 的最大长度，例如如果最多有两个长为 $k$ 的多项式相乘，或者求逆的长度为 $k$，那么 需要$n >= 2k$。
+    \inputminted{cpp}{../src/数学/NTT.cpp}
 
     \subsubsection{任意模数卷积（MTT）}
+    \inputminted{cpp}{../src/数学/MTT.cpp}
+
+    \subsubsection{多项式操作}
+    \inputminted{cpp}{../src/数学/多项式操作.cpp}
+
+    \subsubsection{Bostan-Mori}
+    \paragraph{问题} 已知两个 $n$ 次多项式 $f(x)$ 与 $g(x)$，求 $\frac {f(x)} {g(x)}$ 的第 $k$ 项系数。
+
+    \paragraph{做法} 上下同乘 $g(-x)$，则底下的 $g(x)g(-x)$ 只有偶数项，所以上面的奇/偶数项乘完之后奇偶性是不变的。然后就可以直接按照 $n$ 的奇偶性分情况只取出奇数项或者偶数项，这样就在 $n$ 不变的情况下把 $k$ 折半了，一直做到 $k = 0$ 然后输出常数项即可。复杂度 $O(n \log n \log k)$。
+
+    $$ [x^k] \dfrac{f(x)}{g(x)} = [x^k] \dfrac{f(x)g(-x)}{g(x)g(-x)} = [x^k] \dfrac{F(x^2)+xG(x^2)}{H(x^2)} $$
+    $$ =
+    \begin{cases}
+    [x^{\lfloor k/2\rfloor}]\dfrac{F(x)}{H(x)}& (k\text{ is even})\\
+    [x^{\lfloor k/2\rfloor}]\dfrac{G(x)}{H(x)}& (k\text{ is odd})
+    \end{cases} $$
+    \inputminted{cpp}{../src/数学/Bostan-Mori.cpp}
+
+    \subsubsection{分治 FFT}
 
 \subsection{插值}
     \subsubsection{牛顿插值}
@@ -294,6 +313,8 @@
 \subsection{莫比乌斯反演}
 
 \subsection{快速沃尔什变换（FWT）}
+处理多项式按位运算卷积。以下代码均以模质数情况为例，其中 $n$ 为变换长度，$t$ 表示正/逆变换。
+\inputminted{cpp}{../src/数学/FWT.cpp}
 
 \subsection{线性代数}
     \subsubsection{矩阵}
@@ -608,6 +629,10 @@
     求解所有数的欧拉函数（小于等于 $n$ 且和 $n$ 互质的数的个数）。
     \inputminted{cpp}{../src/数论/欧拉函数（求解全部数的欧拉函数）.cpp}
 
+\subsection{Miller–Rabin 素性测试}
+可以看作常数复杂度。
+\inputminted{cpp}{../src/数论/Miller–Rabin素性测试.cpp}
+
 \subsection{min25 筛}
 
 \subsection{常用数论公式}
@@ -759,6 +784,13 @@
 \subsection{读入字符串}
 读入多行以某个分隔符分割的字符串，如果已经使用\mintinline{cpp}|cin|读入，要先使用\mintinline{cpp}|cin.get();|读换行符。
 \inputminted{cpp}{../src/杂项/读入字符串.cpp}
+
+\subsection{$O(1)$ 快速乘}
+\inputminted{cpp}{../src/杂项/O(1)快速乘.cpp}
+
+\subsection{Kahan 求和}
+降低有限精度浮点数序列累加值误差，一般用不上，累加被卡精度了才有必要考虑。
+\inputminted{cpp}{../src/杂项/Kahan求和.cpp}
 
 \subsection{高精度}
 输入使用\mintinline{cpp}|cin >> a;|，输出使用\mintinline{cpp}|a.print();|。输入不能自动去掉前导 0，可以先读入到 char 数组，去掉前导 0，再用构造函数。
