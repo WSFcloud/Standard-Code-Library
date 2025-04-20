@@ -613,7 +613,7 @@
     \inputminted{cpp}{../src/数论/扩展欧几里得求逆元.cpp}
 
     \subsubsection{$O(n)$ 预处理逆元}
-    $\text{inv}[i] = (p - \left\lfloor \frac{p}{i} \right\rfloor) \cdot \text{inv}[p \bmod i] \mod p$
+    $i ^ {-1} = - \frac p i \left( p \bmod i \right) ^ {-1},\; p \in \mathbb{P}$
     \inputminted{cpp}{../src/数论/O(n)预处理逆元.cpp}
 
 \subsection{欧拉筛}
