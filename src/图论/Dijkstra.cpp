@@ -9,8 +9,7 @@ struct edge {
     int to, weight;
 };
 void dijkstra(vector<vector<edge>> &graph) {
-    dis.assign(n + 1, INF);
-    vis.assign(n + 1, 0);
+    vector<int> dis(n + 1, INF), vis(n + 1, 0);
     dis[s] = 0;
     priority_queue<pair<int, int>, vector<pair<int, int>>, greater<>> pq;
     pq.push({0, s});

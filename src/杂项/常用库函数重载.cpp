@@ -41,7 +41,7 @@ ll accurate_sqrt(ll n) {
     }
     return s;
 }
-// 求 $log_{a}b$
+// 求 $\log_{a}b$
 int logi(int a, int b) {
     int t = 0;
     ll v = 1;

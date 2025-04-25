@@ -59,7 +59,7 @@
 
 % 页眉和页脚设置
 \fancypagestyle{fancy} {                        % 定义一个名为 fancy 的页眉页脚样式
-	\chead{Standard Code Library}               % 页眉中间显示的内容
+	\chead{\fontspec[Path=fonts/]{Baskervville-Regular.ttf}\selectfont{\color{black}}Standard Code Library}               % 页眉中间显示的内容
 	\lhead{\nouppercase\leftmark}               % 页眉左侧显示章节标题（首字母不转换为大写）
 	\rhead{\nouppercase\rightmark}              % 页眉右侧显示小节标题（首字母不转换为大写）
 	\cfoot{\thepage}                            % 页脚中间显示当前页码
@@ -68,6 +68,9 @@
 \renewcommand{\footrulewidth}{0.5pt}            % 设置页脚上方线条的宽度为0.5pt
 \setlength{\headsep}{0.1cm}                     % 设置正文顶部到页眉之间的间距为0.1cm
 \setlength{\footskip}{0.7cm}                    % 设置正文底部到页脚之间的间距为0.7cm
+
+% 设置奇偶页边距
+% \geometry{inner=1.0cm, outer=0.7cm}
 
 % 配置中文字体
 % \setCJKmainfont{汉仪润圆-55S}[Scale=1.0]                       % 设置中文正文字体为汉仪润圆-55S
@@ -268,6 +271,15 @@
     \subsubsection{多项式操作}
     \inputminted{cpp}{../src/数学/多项式操作.cpp}
 
+    \subsubsection{多点求值应用（快速求阶乘）}
+    \paragraph{问题} 求 $n! \pmod p$，$n < p$，$p$ 是 NTT 模数。
+
+    考虑令 $m = \left\lfloor \sqrt n \right\rfloor$，那么我们可以写出连续 $m$ 个数相乘的多项式：
+    $$ f(x) = \prod_{i = 1} ^ m (x + i) $$
+    那么显然就有
+    $$ n! = \left( \prod_{k = 0} ^ {m - 1} f(k m) \right) \prod_{i = m ^ 2 + 1} ^ n i $$
+    $f(x)$ 的系数可以用倍增求（或者懒一点直接分治 FFT），然后 $f(km)$ 可以用多点求值求出，所以总复杂度就是$O(\sqrt n \log^2 n)$。当然如果 $p$ 不变并且多次询问的话，我们只需要取一个 $m$，也就是预处理 $O(\sqrt p \log^2 p)$，询问 $O(\sqrt p)$。
+
     \subsubsection{Bostan-Mori}
     \paragraph{问题} 已知两个 $n$ 次多项式 $f(x)$ 与 $g(x)$，求 $\frac {f(x)} {g(x)}$ 的第 $k$ 项系数。
 
@@ -355,6 +367,7 @@
     \end{enumerate}
 
     \subsubsection{位操作}
+    最低位为第 1 位。
     \inputminted{cpp}{../src/数学/二进制相关.cpp}
     
 \subsection{常见数列}
@@ -604,11 +617,54 @@
 求 $x, y$ 使得 $ax+by=\gcd(a, b)$ ，返回值为 $\gcd(a, b)$
 \inputminted{cpp}{../src/数论/扩展欧几里得（exgcd）.cpp}
 
-\subsection{中国剩余定理}
+\subsection{类欧几里得算法}
+\paragraph{问题} $a, b \geq 0, m \ge 0$，计算 $\sum\limits_{i=0}^{n-1} \lfloor \frac{a+bi}{m} \rfloor$。
+\inputminted{cpp}{../src/数论/类欧几里得算法.cpp}
 
-\subsection{二次剩余}
+\subsection{中国剩余定理（crt）}
+$$ x \equiv a_i \pmod {p_i} $$
+$$ M = \prod_i p_i,\; m_i = \frac M {p_i} $$
+$$ m_i' \equiv m_i^{-1} \pmod {p_i} $$
+$$ x \equiv \sum_{i} a_i m_i m_i' \pmod M $$
+\inputminted{cpp}{../src/数论/中国剩余定理（crt）.cpp}
+
+\subsection{扩展中国剩余定理（excrt）}
+设两个方程分别是 $x\equiv a_1 \pmod {m_1}$ 和 $x\equiv a_2 \pmod {m_2}$，将它们转化为不定方程 $x = m_1 p + a_1 = m_2 q + a_2$，其中 $p, q$ 是整数，则有 $m_1 p - m_2 q = a_2 - a_1$。
+
+当 $a_2 - a_1$ 不能被 $\gcd(m_1, m_2)$ 整除时无解，否则可以通过扩展欧几里德解出来一组可行解 $(p, q)$。则原来的两方程组成的模方程组的解为 $x\equiv b\pmod M$，其中 $b = m_1 p + a_1$，$M = \text{lcm}(m_1, m_2)$。
+\inputminted{cpp}{../src/数论/扩展中国剩余定理（excrt）.cpp}
+
+\subsection{裴蜀定理}
+设 $a, b$ 是不全为零的整数，对任意整数 $x, y$，满足 $\gcd(a,b) \mid ax + by$，且存在整数 $x,y$，使得 $ax+by = \gcd(a,b)$。
+
+\paragraph{问题} 给定一个序列 $a$，找到一个序列 $x$，使得 $\sum\limits_{i=1}^{n}a_{i}x_{i}$ 最小，给出最小值。
+\inputminted{cpp}{../src/数论/裴蜀定理.cpp}
+
+\subsection{连续数字的正约数集合}
+时间复杂度为 $O(n\log n)$。
+\inputminted{cpp}{../src/数论/连续数字的正约数集合.cpp}
+
+\subsection{原根}
+\paragraph{阶} 最小的整数 $k$ 使得 $a ^ k \equiv 1 \pmod m$，记为 $\delta_m(a)$。
+
+显然 $a$ 在阶以下次数的幂是两两不同的。
+
+如果 $a, b$ 均与 $m$ 互质，则
+$$\delta_m(ab)=\delta_m(a)\delta_m(b) \iff \gcd\left(\delta_m(a),\delta_p(b)\right) = 1$$
+
+另外，如果 $a$ 与 $m$ 互质，则有 $\delta_p(a^k)=\dfrac{\delta_p(a)}{\gcd\left(\delta_p(a),k\right)}$。（也就是长为 $\delta_m(a)$ 的环上一次跳 $k$ 步的周期。）
+
+\paragraph{原根} 所有阶等于 $\varphi(m)$ 的数，其中 $\varphi$ 为欧拉函数。
+\begin{itemize}
+    \item 只有形如$2,\, 4,\, p^k,\, 2 p^k$（$p$是奇素数）的数才有原根。
+    \item 并且如果 $m$ 有原根，那么原根的个数一定是 $\varphi\left(\varphi(m)\right)$ 个。
+    \item 如果 $p$ 是素数，那么素数 $p$ 一定有原根，并且模 $p$ 的原根的个数为 $\varphi(p − 1)$。
+\end{itemize}
+\inputminted{cpp}{../src/数论/原根.cpp}
+
 
 \subsection{逆元}
+如果 $ax \equiv 1\pmod b$，则称 $x$ 为 $a \bmod b$ 的逆元，记作 $a^{-1}$。
     \subsubsection{费马小定理求逆元}
     使用费马小定理与快速幂。单次计算的复杂度即为快速幂的复杂度 $O(\log x)$。要求模数 $p$ 必须是质数，且需要满足 $x$ 与 $p$ 互质。
     \inputminted{cpp}{../src/数论/费马小定理求逆元.cpp}
@@ -638,6 +694,10 @@
 可以看作常数复杂度。
 \inputminted{cpp}{../src/数论/Miller–Rabin素性测试.cpp}
 
+\subsection{Pollard-Rho}
+虽然Pollard's Rho的理论复杂度是 $O(n ^ {\frac{1}{4}})$ 但实际跑起来比较慢, 一般用于 \mintinline{cpp}|long long| 范围内的质因数分解。
+\inputminted{cpp}{../src/数论/Pollard-Rho.cpp}
+
 \subsection{min25 筛}
 
 \subsection{常用数论公式}
@@ -645,6 +705,7 @@
 \newpage
 \section{计算几何}
 \subsection{最近点对}
+\inputminted{cpp}{../src/计算几何/最近点对.cpp}
 
 \subsection{平面几何}
 
@@ -685,8 +746,6 @@
 
     \subsubsection{AVL}
 
-    \subsubsection{pb-ds 平衡树}
-
 \subsection{树链剖分}
     \subsubsection{点权}
 
@@ -723,21 +782,29 @@
 返回字符串 $s$ 的前缀函数
 \inputminted{cpp}{../src/字符串/KMP（前缀函数）.cpp}
 
-\subsection{后缀数组}
-
-\subsection{后缀自动机}
-
-\subsection{回文自动机}
-
 \subsection{AC 自动机}
+\inputminted{cpp}{../src/字符串/AC自动机.cpp}
+
+\subsection{后缀数组（SA）}
+\inputminted{cpp}{../src/字符串/后缀数组（SA）.cpp}
+
+\subsection{后缀自动机（SAM）}
+\inputminted{cpp}{../src/字符串/后缀自动机（SAM）.cpp}
+
+\subsection{回文自动机（PAM）}
+\inputminted{cpp}{../src/字符串/回文自动机（PAM）.cpp}
 
 \subsection{字符串哈希}
+\inputminted{cpp}{../src/字符串/字符串哈希.cpp}
 
 \subsection{最长公共前缀（LCP）}
 
 \subsection{字典树 Trie}
+\inputminted{cpp}{../src/字符串/字典树Trie.cpp}
 
 \subsection{Z 函数}
+返回一个数组 $z$，其中 $z[i]$ 表示 $s[i:]$ 与 $s$ 的最长公共前缀（LCP）的长度。
+\inputminted{cpp}{../src/字符串/Z函数.cpp}
 
 \subsection{马拉车（Manacher）}
 返回处理后的字符串以 $r_i$ 为中心的回文子串长度。
@@ -801,6 +868,9 @@
 输入使用\mintinline{cpp}|cin >> a;|，输出使用\mintinline{cpp}|a.print();|。输入不能自动去掉前导 0，可以先读入到 char 数组，去掉前导 0，再用构造函数。
 \inputminted{cpp}{../src/杂项/高精度.cpp}
 
+\subsection{分数四则运算}
+\inputminted{cpp}{../src/杂项/分数四则运算.cpp}
+
 \subsection{日期换算（基姆拉尔森公式）}
 \inputminted{cpp}{../src/杂项/日期换算（基姆拉尔森公式）.cpp}
 
@@ -809,6 +879,9 @@
 
 \subsection{全排列生成}
 \inputminted{cpp}{../src/杂项/全排列生成.cpp}
+
+\subsection{枚举 $k$ 大小子集}
+\inputminted{cpp}{../src/杂项/枚举k大小子集.cpp}
 
 \subsection{随机数生成}
 \inputminted{cpp}{../src/杂项/随机数生成.cpp}
@@ -822,6 +895,9 @@ $k1, k2$ 为随机数种子，生成 $[0, n)$ 区间上的伪随机数。
 
 \subsection{int128库函数自定义}
 \inputminted{cpp}{../src/杂项/int128库函数自定义.cpp}
+
+\subsection{自定义 Hash}
+\inputminted{cpp}{../src/杂项/自定义Hash.cpp}
 
 \newpage
 \section{附录}
@@ -861,14 +937,15 @@ $k1, k2$ 为随机数种子，生成 $[0, n)$ 区间上的伪随机数。
 \subsection{Python}
 
 \subsection{环境测试}
-    \subsubsection{GNU C++ 版本测试}
-
-    \subsubsection{编译器位数测试}
+    \subsubsection{编译器版本与C++标准测试}
+    \inputminted{cpp}{../src/附录/环境测试/编译器版本与C++标准测试.cpp}
 
     \subsubsection{评测机环境测试}
     \begin{itemize}
         \item CPU型号检测
         \inputminted{cpp}{../src/附录/环境测试/CPU型号检测.cpp}
+        \item 性能测试
+        \inputminted{cpp}{../src/附录/环境测试/性能测试.cpp}
     \end{itemize}
 
     \subsubsection{上机环境测试}
@@ -890,7 +967,7 @@ $k1, k2$ 为随机数种子，生成 $[0, n)$ 区间上的伪随机数。
     \end{itemize}
 
     \subsubsection{编译运行}
-    VS Code无插件时快速编译运行。
+    终端内快速编译运行。
     \begin{itemize}
         \item Linux
         \inputminted{bash}{../src/附录/环境测试/Linux编译运行脚本.sh}
@@ -912,6 +989,9 @@ $k1, k2$ 为随机数种子，生成 $[0, n)$ 区间上的伪随机数。
     \item C++对拍\\
     Windows
     \inputminted{cpp}{../src/附录/C++对拍（Windows）.cpp}
+
+    Linux
+    \inputminted{cpp}{../src/附录/C++对拍（Linux）.cpp}
 \end{itemize}
 
 \subsection{VS Code相关}
@@ -933,8 +1013,17 @@ $k1, k2$ 为随机数种子，生成 $[0, n)$ 区间上的伪随机数。
     \end{itemize}
 
     \subsubsection{常用快捷键}
+    \begin{itemize}
+        \item F1 / Ctrl + Shift + P：打开命令面板
+        \item Ctrl + 1/2/3：切到对应栏
+        \item Ctrl + [ or ]：当前行向左/右缩进
+        \item Ctrl + U：回退上一个光标操作（防止光标飞了找不回去）
+        \item Ctrl + L：选中当前行
+    \end{itemize}
 
-\subsection{Vim设置}
+\subsection{Vim配置}
+\mintinline{bash}|vim ~/.vimrc|
+\inputminted{bash}{../src/附录/vim配置.sh}
 
 \subsection{注意事项}
 
@@ -967,6 +1056,8 @@ $k1, k2$ 为随机数种子，生成 $[0, n)$ 区间上的伪随机数。
     \begin{itemize}
         \item 不要着急，着急没用。
         \item 签到题写完不要急着交，样例一般比较弱，一定要仔细检查是否哪里写错了。
+        \item 没有思路就和队友讨论。
+        \item 输了游戏，还有人生。
     \end{itemize}
 
 \newpage

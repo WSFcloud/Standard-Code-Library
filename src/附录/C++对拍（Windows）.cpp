@@ -9,7 +9,7 @@ int main() {
         system("brute.exe");
         double end = clock();
         system("std.exe");
-        if (system("fc generator.out brute.out")) {
+        if (system("fc std.out brute.out")) {
             cout << "\033[31m" << "Wrong Answer\n"
                  << "\033[0m";
             exit(0);
