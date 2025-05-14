@@ -95,6 +95,9 @@
     % leftmargin=3pt                              % 列表的左边距
 }
 
+% 数学符号定义
+\DeclareMathOperator*{\inv}{inv}                % 逆元
+
 % minted配色设置
 \definecolor{light-gray}{gray}{0.9}             % 定义浅灰色，灰度值为0.9
 \definecolor{black}{gray}{0.0}                  % 定义黑色，灰度值为0.0
@@ -664,7 +667,16 @@ $$\delta_m(ab)=\delta_m(a)\delta_m(b) \iff \gcd\left(\delta_m(a),\delta_p(b)\rig
 
 
 \subsection{逆元}
-如果 $ax \equiv 1\pmod b$，则称 $x$ 为 $a \bmod b$ 的逆元，记作 $a^{-1}$。
+如果 $ax \equiv 1\pmod p$，则称 $x$ 为 $a \bmod p$ 的逆元，记作 $a^{-1}$，逆元仅在所求数与模数互质时存在。
+\paragraph{性质}
+\begin{itemize}
+    \item 模 $p$ 意义下的 $\frac{a}{b}$ 即 $a \cdot \inv(b) \bmod p$。
+    \item $a \cdot \inv(a) \equiv 1\pmod p$。
+    \item 乘法逆元是完全积性函数，$\inv(a) \cdot \inv(b) = \inv(a \cdot b)$。
+\end{itemize}
+
+
+
     \subsubsection{费马小定理求逆元}
     使用费马小定理与快速幂。单次计算的复杂度即为快速幂的复杂度 $O(\log x)$。要求模数 $p$ 必须是质数，且需要满足 $x$ 与 $p$ 互质。
     \inputminted{cpp}{../src/数论/费马小定理求逆元.cpp}
