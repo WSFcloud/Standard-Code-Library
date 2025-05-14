@@ -3,7 +3,6 @@
 #include <climits>
 using namespace std;
 const int INF = INT_MAX;
-vector<int> dis, vis;
 int n, m, s;
 struct edge {
     int to, weight;
