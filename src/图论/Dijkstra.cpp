@@ -2,13 +2,15 @@
 #include <queue>
 #include <climits>
 using namespace std;
+
 const int INF = INT_MAX;
+vector<int> dis, vis;
 int n, m, s;
 struct edge {
     int to, weight;
 };
 void dijkstra(vector<vector<edge>> &graph) {
-    vector<int> dis(n + 1, INF), vis(n + 1, 0);
+    dis.assign(n + 1, INF), vis.assign(n + 1, 0);
     dis[s] = 0;
     priority_queue<pair<int, int>, vector<pair<int, int>>, greater<>> pq;
     pq.push({0, s});
