@@ -335,11 +335,11 @@
     \subsubsection{矩阵}
     \inputminted{cpp}{../src/数学/矩阵.cpp}
 
-    \subsubsection{矩阵求逆}
+%     \subsubsection{矩阵求逆}
 
-    \subsubsection{行列式}
+%     \subsubsection{行列式}
 
-    \subsubsection{高斯消元法}
+%     \subsubsection{高斯消元法}
 
 \subsection{位运算}
     \subsubsection{与}
@@ -710,20 +710,21 @@ $$\delta_m(ab)=\delta_m(a)\delta_m(b) \iff \gcd\left(\delta_m(a),\delta_p(b)\rig
 虽然Pollard's Rho的理论复杂度是 $O(n ^ {\frac{1}{4}})$ 但实际跑起来比较慢, 一般用于 \mintinline{cpp}|long long| 范围内的质因数分解。
 \inputminted{cpp}{../src/数论/Pollard-Rho.cpp}
 
-\subsection{min25 筛}
+% \subsection{min25 筛}
 
-\subsection{常用数论公式}
+% \subsection{常用数论公式}
 
 \newpage
 \section{计算几何}
+\subsection{平面几何}
+\inputminted{cpp}{../src/计算几何/平面几何.cpp}
+
+% \subsection{立体几何}
+
 \subsection{最近点对}
 \inputminted{cpp}{../src/计算几何/最近点对.cpp}
 
-\subsection{平面几何}
-
-\subsection{立体几何}
-
-\subsection{静态凸包}
+% \subsection{静态凸包}
 
 \newpage
 \section{数据结构}
@@ -741,36 +742,36 @@ $$\delta_m(ab)=\delta_m(a)\delta_m(b) \iff \gcd\left(\delta_m(a),\delta_p(b)\rig
     \subsubsection{区间加、乘、最值}
     \inputminted{cpp}{../src/数据结构/线段树（区间加、乘、最值）.cpp}
 
-    \subsubsection{维护矩形并}
+%     \subsubsection{维护矩形并}
 
-    \subsubsection{非递归线段树}
+%     \subsubsection{非递归线段树}
 
-    \subsubsection{可持久化线段树}
+%     \subsubsection{可持久化线段树}
 
-    \subsubsection{李超线段树}
+%     \subsubsection{李超线段树}
 
-\subsection{平衡树}
-    \subsubsection{Treap}
+% \subsection{平衡树}
+%     \subsubsection{Treap}
 
-    \subsubsection{无旋/可持久化 Treap}
+%     \subsubsection{无旋/可持久化 Treap}
 
-    \subsubsection{Splay}
+%     \subsubsection{Splay}
 
-    \subsubsection{AVL}
+%     \subsubsection{AVL}
 
-\subsection{树链剖分}
-    \subsubsection{点权}
+% \subsection{树链剖分}
+%     \subsubsection{点权}
 
-    \subsubsection{边权}
+%     \subsubsection{边权}
 
-\subsection{堆}
-    \subsubsection{二叉堆}
+% \subsection{堆}
+%     \subsubsection{二叉堆}
     
-    \subsubsection{左偏树}
+%     \subsubsection{左偏树}
 
-\subsection{CDQ 分治}
+% \subsection{CDQ 分治}
 
-\subsection{莫队}
+% \subsection{莫队}
 
 \newpage
 \section{动态规划}
@@ -783,9 +784,9 @@ $$\delta_m(ab)=\delta_m(a)\delta_m(b) \iff \gcd\left(\delta_m(a),\delta_p(b)\rig
     $$f(v)=\max\{f(v), f(v-c_i)+w_i\}$$
     \inputminted{cpp}{../src/动态规划/0-1背包.cpp}
 
-\subsection{最长上升子序列}
+% \subsection{最长上升子序列}
 
-\subsection{插头 DP}
+% \subsection{插头 DP}
 
 
 \newpage
@@ -822,7 +823,7 @@ $$\delta_m(ab)=\delta_m(a)\delta_m(b) \iff \gcd\left(\delta_m(a),\delta_p(b)\rig
 返回处理后的字符串以 $r_i$ 为中心的回文子串长度。
 \inputminted{cpp}{../src/字符串/Manacher.cpp}
 
-\subsection{区间本质不同子串个数}
+% \subsection{区间本质不同子串个数}
 
 \newpage
 \section{图论}
@@ -969,6 +970,9 @@ $k1, k2$ 为随机数种子，生成 $[0, n)$ 区间上的伪随机数。
         \item 测试\mintinline{bash}{/usr/bin/time -v ./a}能否显示内存占用？
         \item 测试本地性能和评测机性能差距。
         \item \mintinline{bash}|lscpu| 命令显示硬件详细信息。
+        \item 测试 \mintinline{cpp}|__int128|, \mintinline{cpp}|__float128|, \mintinline{cpp}|long double|是否可用。
+        \item 测试代码长度限制，尝试触发 NO-OUTPUT, OUTPUT-LIMIT, RUN-ERROR。
+        \item 测试 \mintinline{cpp}|pragma|是否 CE。
     \end{itemize}
 
     \subsubsection{编译选项}
@@ -1016,18 +1020,10 @@ $k1, k2$ 为随机数种子，生成 $[0, n)$ 区间上的伪随机数。
     \inputminted{json}{../src/附录/VSCode/settings.json}
 
     \subsubsection{调试配置}
-    \begin{itemize}
-        \item Windows\\
-        tasks.json
-        \inputminted{json}{../src/附录/VSCode/Windows-tasks.json}
-        launch.json
-        \inputminted{json}{../src/附录/VSCode/Windows-launch.json}
-        \item Linux\\
-        tasks.json
-        \inputminted{json}{../src/附录/VSCode/Linux-tasks.json}
-        launch.json
-        \inputminted{json}{../src/附录/VSCode/Linux-launch.json}
-    \end{itemize}
+    tasks.json
+    \inputminted{json}{../src/附录/VSCode/tasks.json}
+    launch.json
+    \inputminted{json}{../src/附录/VSCode/launch.json}
 
     \subsubsection{常用快捷键}
     \begin{itemize}
@@ -1050,8 +1046,14 @@ $k1, k2$ 为随机数种子，生成 $[0, n)$ 区间上的伪随机数。
         \item 比赛前至少要翻一遍板子。
         \item 赛前保持良好作息。
         \item 赛前记得买咖啡、运动饮料之类的。
-        \item 入场之后检查电脑是否正常、键盘有无不能按的键。
-        \item 热身赛记得检查编译环境，熟悉场地。
+    \end{itemize}
+
+    \subsubsection{热身赛注意事项}
+    \begin{itemize}
+        \item 检查电脑、键盘、鼠标是否正常、有无不能按的键？
+        \item 检查本机环境与评测机环境。
+        \item 测试提交方式与 submit 命令。
+        \item 熟悉场地位置。
     \end{itemize}
 
     \subsubsection{常见错误}

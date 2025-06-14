@@ -2,8 +2,8 @@
     "tasks": [
         {
             "type": "cppbuild",
-            "label": "g++ build and debug",
-            "command": "C:/mingw64/bin/g++",
+            "label": "g++ compile",
+            "command": "g++",
             "args": [
                 "-fdiagnostics-color=always",
                 "-g",
@@ -15,10 +15,10 @@
                 "-DLOCAL",
                 "${file}",
                 "-o",
-                "${fileDirname}\\${fileBasenameNoExtension}.exe"
+                "${fileDirname}/${fileBasenameNoExtension}"
             ],
             "options": {
-                "cwd": "C:/mingw64/bin"
+                "cwd": ""
             },
             "problemMatcher": [
                 "$gcc"

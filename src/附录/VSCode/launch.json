@@ -1,21 +1,22 @@
 {
     "version": "0.2.0",
     "configurations": [
-        {
+          {
             "name": "g++",
             "type": "cppdbg",
             "request": "launch",
-            "program": "${fileDirname}/${fileBasenameNoExtension}.exe",
+            "program": "${fileDirname}/${fileBasenameNoExtension}",
             "args": [],
             "stopAtEntry": false,
-            "cwd": "${fileDirname}",
+            "cwd": "${workspaceFolder}",
             "environment": [],
             "externalConsole": false,
             "MIMode": "gdb",
-            "miDebuggerPath": "C:\\mingw64\\bin\\gdb.exe",
+            // "miDebuggerPath": "/usr/bin/gdb",
+            // "miDebuggerArgs": "-q -ex quit; wait() { fg >/dev/null; }; /usr/bin/gdb -q --interpreter=mi",
             "setupCommands": [
                 {
-                    "description": "为 gdb 启用整齐打印",
+                    "description": "Enable pretty-printing for gdb",
                     "text": "-enable-pretty-printing",
                     "ignoreFailures": true
                 },
@@ -30,7 +31,7 @@
                     "ignoreFailures": true
                 }
             ],
-            "preLaunchTask": "g++ build and debug"
-        }
+            "preLaunchTask": "g++ compile"
+          }
     ]
 }
