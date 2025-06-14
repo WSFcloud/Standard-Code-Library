@@ -797,9 +797,15 @@ f(i, j) = \begin{cases}
 $$
 时间复杂度和空间复杂度均为 $O(nm)$。
 
-% \subsection{最长不下降子序列（LIS）}
-% \paragraph{问题}给定一个长度为 $n$ 的序列 $a$，求出一个最长的 $a$ 的子序列，满足该子序列的后一个元素不小于前一个元素。
-% \inputminted{cpp}{../src/动态规划/最长不下降子序列.cpp}
+\subsection{最长不下降子序列（LIS）}
+\paragraph{问题}给定一个长度为 $n$ 的序列 $a$，求出一个最长的 $a$ 的子序列，满足该子序列的后一个元素不小于前一个元素。
+
+设 $f(i)$ 表示以 $a_i$ 为结尾的最长不下降子序列的长度，状态转移方程为：
+$$
+f(i) = \max \limits_{j < i, a_j \leq a_i}\{f(j) + 1\}
+$$
+时间复杂度为 $O(n^2)$，可以使用二分优化到 $O(n\log n)$。
+\inputminted{cpp}{../src/动态规划/最长不下降子序列（LIS）.cpp}
 
 % \subsection{插头 DP}
 
