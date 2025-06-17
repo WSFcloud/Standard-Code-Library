@@ -1008,24 +1008,6 @@ $k1, k2$ 为随机数种子，生成 $[0, n)$ 区间上的伪随机数。
         \item \mintinline{bash}{-fno-ms-extensions}: 关闭一些和MSVC保持一致的特性, 例如, 不标返回值类型的函数会报CE而不是默认为\mintinline{cpp}{int}。
     \end{itemize}
 
-    \subsubsection{编译运行}
-    终端内快速编译运行。
-    \begin{itemize}
-        \item Linux
-        \inputminted{bash}{../src/附录/环境测试/Linux编译运行脚本.sh}
-        终端中使用：
-        \begin{minted}{bash}
-            sudo chmod +x run.sh
-            ./run.sh test        
-        \end{minted}
-        \item Windows
-        \inputminted{batch}{../src/附录/环境测试/Windows编译运行脚本.bat}
-        终端中使用：
-        \begin{minted}{bash}
-            ./run test.cpp     
-        \end{minted}
-    \end{itemize}
-
 \subsection{对拍}
 \begin{itemize}
     \item C++对拍\\
@@ -1035,6 +1017,24 @@ $k1, k2$ 为随机数种子，生成 $[0, n)$ 区间上的伪随机数。
     Linux
     \inputminted{cpp}{../src/附录/C++对拍（Linux）.cpp}
 \end{itemize}
+
+\subsection{编译运行}
+    终端内快速编译运行。
+    \begin{itemize}
+        \item Linux
+        \inputminted{bash}{../src/附录/Linux编译运行脚本.sh}
+        终端中使用：
+        \begin{minted}{bash}
+            chmod +x run.sh
+            ./run.sh test        
+        \end{minted}
+        \item Windows
+        \inputminted{batch}{../src/附录/Windows编译运行脚本.bat}
+        终端中使用：
+        \begin{minted}{bash}
+            ./run test.cpp     
+        \end{minted}
+    \end{itemize}
 
 \subsection{VS Code相关}
     \subsubsection{设置}
