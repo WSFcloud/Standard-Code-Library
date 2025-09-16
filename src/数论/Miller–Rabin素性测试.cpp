@@ -1,40 +1,27 @@
-using ll = long long;
-
-bool check(ll n, ll b) { // b: base
-    ll a = n - 1;
-    int k = 0;
-    while (a % 2 == 0) {
-        a /= 2;
-        k++;
+bool Miller_Rabin(ll n) {
+    if (n < 2) {
+        return false;
     }
-    ll t = qpow(b, a, n); // 这里的快速幂函数需要写O(1)快速乘
-    if (t == 1 || t == n - 1) {
-        return true;
-    }
-    while (k--) {
-        t = mul(t, t, n); // mul是O(1)快速乘函数
-        if (t == n - 1) {
+    static constexpr int A[] = {2, 3, 5, 7, 11, 13, 17, 19, 23};
+    int s = __builtin_ctzll(n - 1);
+    ll d = (n - 1) >> s;
+    for (auto a : A) {
+        if (a == n) {
             return true;
         }
-    }
-    return false;
-}
-bool Miller_Rabin(ll n) {
-    if (n == 1) {
-        return false;
-    }
-    if (n == 2)
-        return true;
-    if (n % 2 == 0) {
-        return false;
-    }
-    // int范围内只需要检查 {2, 7, 61}
-    // ll范围内只需要检查 {2, 325, 9375, 28178, 450775, 9780504, 1795265022}
-    for (int i : {2, 325, 9375, 28178, 450775, 9780504, 1795265022}) {
-        if (i >= n) {
-            break;
+        ll x = qpow(a, d, n);
+        if (x == 1 || x == n - 1) {
+            continue;
         }
-        if (!check(n, i)) {
+        bool ok = false;
+        for (int i = 0; i < s - 1; ++i) {
+            x = mul(x, x, n);
+            if (x == n - 1) {
+                ok = true;
+                break;
+            }
+        }
+        if (!ok) {
             return false;
         }
     }

@@ -12,12 +12,7 @@ int qpow(ll a, ll b, int p) {
 }
 // 手写乘法快速幂
 ll mul(ll a, ll b, ll p) {
-    ll c = a * b - ll(1.0L * a * b / p) * p;
-    c %= p;
-    if (c < 0) {
-        c += p;
-    }
-    return c;
+    return static_cast<__int128>(a) * b % p;
 }
 ll qpow(ll a, ll b, ll p) {
     ll res = 1;
