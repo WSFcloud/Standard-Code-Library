@@ -15,8 +15,9 @@ jobs:
         with:
           working_directory: ./latex
           root_file: ./main.tex
+          os: debian
           # pre_compile: "cp ./fonts/*.ttf /usr/share/fonts && fc-cache -f -v"
-          pre_compile: "apt update && apt install -y fonts-noto-cjk"
+          pre_compile: "sudo apt update && sudo apt install -y fonts-noto-cjk"
           latexmk_use_xelatex: true
           latexmk_shell_escape: true
       - name: Create Tag
