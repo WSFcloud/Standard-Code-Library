@@ -73,9 +73,9 @@
 % \geometry{inner=1.0cm, outer=0.7cm}
 
 % 配置中文字体
-% \setCJKmainfont{汉仪润圆-55S}[Scale=1.0]                       % 设置中文正文字体为汉仪润圆-55S
-\setCJKmonofont[Path=fonts/]{SarasaMonoSC-Regular.ttf}     % 设置中文等宽字体为更纱黑体
-\setCJKsansfont{KaiTi}[Scale=1.0]                          % 设置中文无衬线字体为楷体
+\setCJKmainfont{Noto Serif CJK SC}                          % 设置中文正文字体为思源宋体
+\setCJKsansfont{Noto Sans CJK SC}                           % 设置中文无衬线字体为思源黑体
+\setCJKmonofont[Path=fonts/]{SarasaMonoSC-Regular.ttf}      % 设置中文等宽字体为更纱黑体
 
 %配置西文字体
 % \setmainfont{TeX Gyre Pagella}[Scale=1.0]       % 设置西文主字体为TeX Gyre Pagella
@@ -97,6 +97,9 @@
 
 % 数学符号定义
 \DeclareMathOperator*{\inv}{inv}                % 逆元
+\newcommand{\e}{\mathrm{e}}
+\renewcommand{\i}{\mathrm{i}}
+\renewcommand{\d}{\mathrm{d}}
 
 % minted配色设置
 \definecolor{light-gray}{gray}{0.9}             % 定义浅灰色，灰度值为0.9
@@ -322,7 +325,7 @@
     注意到预处理 $r_i$ 的式子满足卷积形式，必要时可以用 FFT 优化至 $O(k\log k)$。
 
     \subsubsection{拉格朗日插值}
-    给定 $n$ 组 $(x_i, y_i)$，求 $f(k) \bmod p$
+    给定 $n$ 组 $(x_i, y_i)$，求在对应的 $n−1$ 次多项式 $y=f(x)$ 下 $f(k) \bmod p$ 的值。
     \inputminted{cpp}{../src/数学/拉格朗日插值.cpp}
 
 \subsection{莫比乌斯反演}
@@ -335,43 +338,47 @@
     \subsubsection{矩阵}
     \inputminted{cpp}{../src/数学/矩阵.cpp}
 
-%     \subsubsection{矩阵求逆}
-
-%     \subsubsection{行列式}
-
-%     \subsubsection{高斯消元法}
+    \subsubsection{高斯消元}
+    求解线性方程组 $Ax = b$，其中 $A$ 为 $n \times m$ 矩阵，$b$ 为 $n$ 维列向量。
+    \inputminted{cpp}{../src/数学/高斯消元.cpp}
 
 \subsection{位运算}
-    \subsubsection{与}
-    当 $x$ 为小于 $2^{n}$ 的正整数时，$2^{n} \mathrel{\&} x=0$ 。
-
-    \subsubsection{异或}
-    异或（$\wedge, \rm{xor}, \oplus$）只有两个对应位不同时才为 1。
-    
-    常见性质：
+    \subsubsection{常见性质}
     \begin{enumerate}
         \item $x \oplus x = 0$
         \item $x \oplus 0 = x$
+        \item $x \oplus 1 = \neg x $
         \item $x \oplus y \oplus z = x \oplus z \oplus y$
         \item $(x \oplus y) \oplus z = x \oplus (y \oplus z)$
         \item $x \oplus y = z \Leftrightarrow x = z \oplus y$
         \item $x + y = (x \oplus y) + 2(x \mathrel{\&} y)$
+        \item $x \mathrel{\&} (y \mid z) = (x \mathrel{\&} y) \mid (x \mathrel{\&} z)$
+        \item $x \mid (y \mathrel{\&} z) = (x \mid y) \mathrel{\&} (x \mid z)$
+        \item 当 $x$ 为小于 $2^{n}$ 的正整数时，$2^{n} \mathrel{\&} x=0$ 。
     \end{enumerate} 
+
+    \subsubsection{连续按位异或}
+    以 $O(1)$ 复杂度计算 $0 \oplus 1 \oplus \dots \oplus n$。
+    \inputminted{cpp}{../src/数学/连续按位异或.cpp}
 
     \subsubsection{GCC 内建函数}
     这些函数都可以在函数名末尾添加 \mintinline{cpp}|l| 或 \mintinline{cpp}|ll| （如\mintinline{cpp}|__builtin_popcountll|）来使参数类型变为 \mintinline{cpp}|(unsigned) long| 或 \mintinline{cpp}|(unsigned) long long| （返回值仍然是 \mintinline{cpp}|int| 类型）。 例如，我们有时候希望求出一个数以 2 为底的对数，如果不考虑 0 的特殊情况，就相当于这个数二进制的位数 -1 ，而一个数 $n$ 的二进制表示的位数可以使用 \mintinline{cpp}|32-__builtin_clz(n)| 表示，因此 \mintinline{cpp}|31-__builtin_clz(n)| 就可以求出 $n$ 以 2 为底的对数。
     \begin{enumerate}
-        \item \mintinline{cpp}|int __builtin_ffs(int x)| ：返回 x 的二进制末尾最后一个 1 的位置，位置的编号从 1 开始（最低位编号为 1 ）。当 x 为 0 时返回 0 。
-        \item \mintinline{cpp}|int __builtin_clz(unsigned int x)|：返回 x 的二进制的前导 0 的个数。当 x 为 0 时，结果未定义。
-        \item \mintinline{cpp}|int __builtin_ctz(unsigned int x)|：返回 x 的二进制末尾连续 0 的个数。当 x 为 0 时，结果未定义。
-        \item \mintinline{cpp}|int __builtin_clrsb(int x)|：当 x 的符号位为 0 时返回 x 的二进制的前导 0 的个数减一，否则返回 x 的二进制的前导 1 的个数减一。
-        \item \mintinline{cpp}|int __builtin_popcount(unsigned int x)|：返回 x 的二进制中 1 的个数。
-        \item \mintinline{cpp}|int __builtin_parity(unsigned int x)|：判断 x 的二进制中 1 的个数的奇偶性。
+        \item \mintinline{cpp}|int __builtin_ffs(int x)| ：返回 $x$ 的二进制末尾最后一个 1 的位置，位置的编号从 1 开始（最低位编号为 1 ）。当 x 为 0 时返回 0 。
+        \item \mintinline{cpp}|int __builtin_clz(unsigned int x)|：返回 x 的二进制的前导 0 的个数。当 $x$ 为 0 时，结果未定义。
+        \item \mintinline{cpp}|int __builtin_ctz(unsigned int x)|：返回 $x$ 的二进制末尾连续 0 的个数。当 $x$ 为 0 时，结果未定义。
+        \item \mintinline{cpp}|int __builtin_clrsb(int x)|：当 $x$ 的符号位为 0 时返回 $x$ 的二进制的前导 0 的个数减一，否则返回 $x$ 的二进制的前导 1 的个数减一。
+        \item \mintinline{cpp}|int __builtin_popcount(unsigned int x)|：返回 $x$ 的二进制中 1 的个数。
+        \item \mintinline{cpp}|int __builtin_parity(unsigned int x)|：判断 $x$ 的二进制中 1 的个数的奇偶性。
     \end{enumerate}
 
     \subsubsection{位操作}
     最低位为第 1 位。
     \inputminted{cpp}{../src/数学/二进制相关.cpp}
+
+\subsection{自适应辛普森积分}
+求函数 $f(x)$ 在区间 $[l, r]$ 上的定积分，$\rm{eps}$ 指定精度。
+\inputminted{cpp}{../src/数学/自适应辛普森积分.cpp}
     
 \subsection{常见数列}
 查表参见\detailedref{OEIS}。
@@ -689,6 +696,12 @@ $$\delta_m(ab)=\delta_m(a)\delta_m(b) \iff \gcd\left(\delta_m(a),\delta_p(b)\rig
     $i ^ {-1} = - \frac p i \left( p \bmod i \right) ^ {-1},\; p \in \mathbb{P}$
     \inputminted{cpp}{../src/数论/O(n)预处理逆元.cpp}
 
+    \subsubsection{计算组合数}
+    阶乘逆元有：
+    $$(i!)^{-1}=((i+1)!)^{-1} \cdot (i+1) \bmod p$$
+    根据组合数公式可得：
+    $$\binom{n}{m} \bmod p = n! \cdot (m!)^{−1} \cdot ((n−m)!)^{−1} \bmod p$$
+
 \subsection{欧拉筛}
 筛选 $[0,n]$ 区间上的素数。
 \inputminted{cpp}{../src/数论/欧拉筛.cpp}
@@ -831,7 +844,7 @@ $$
 \subsection{字符串哈希}
 \inputminted{cpp}{../src/字符串/字符串哈希.cpp}
 
-\subsection{最长公共前缀（LCP）}
+% \subsection{最长公共前缀（LCP）}
 
 \subsection{字典树 Trie}
 \inputminted{cpp}{../src/字符串/字典树Trie.cpp}
@@ -862,10 +875,15 @@ $$
 
 %     \subsubsection{$k$ 短路}
 
-% \subsection{最小生成树}
-%     \subsubsection{Prim 算法}
+\subsection{拓扑排序}
+    \inputminted{cpp}{../src/图论/拓扑排序.cpp}
 
-%     \subsubsection{Kruskal 算法}
+\subsection{最小生成树}
+    % \subsubsection{Prim 算法}
+
+    \subsubsection{Kruskal 算法}
+    \inputminted{cpp}{../src/图论/Kruskal.cpp}
+
 
 % \subsection{Tarjan 算法}
 
@@ -901,6 +919,9 @@ $$
 \subsection{Kahan 求和}
 降低有限精度浮点数序列累加值误差，一般用不上，累加被卡精度了才有必要考虑。
 \inputminted{cpp}{../src/杂项/Kahan求和.cpp}
+
+\subsection{取模类}
+\inputminted{cpp}{../src/杂项/取模类.cpp}
 
 \subsection{高精度}
 输入使用\mintinline{cpp}|cin >> a;|，输出使用\mintinline{cpp}|a.print();|。输入不能自动去掉前导 0，可以先读入到 char 数组，去掉前导 0，再用构造函数。
@@ -942,11 +963,11 @@ $k1, k2$ 为随机数种子，生成 $[0, n)$ 区间上的伪随机数。
 \subsection{C++}
     \subsubsection{STL与库函数}
     \begin{enumerate}
-        \item 容器库
-        \item 字符库
-        \item 文本处理库
-        \item 数值库
-        \item 日期时间库
+        % \item 容器库
+        % \item 字符库
+        % \item 文本处理库
+        % \item 数值库
+        % \item 日期时间库
         \item 工具库
         \begin{itemize}
             \item std::function\\
@@ -970,9 +991,9 @@ $k1, k2$ 为随机数种子，生成 $[0, n)$ 区间上的伪随机数。
 
     \end{enumerate}
     
-    \subsubsection{常见错误}
+%     \subsubsection{常见错误}
 
-\subsection{Python}
+% \subsection{Python}
 
 \subsection{环境测试}
     \subsubsection{编译器版本与C++标准测试}
