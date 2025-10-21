@@ -650,10 +650,6 @@ $$ x \equiv \sum_{i} a_i m_i m_i' \pmod M $$
 \paragraph{问题} 给定一个序列 $a$，找到一个序列 $x$，使得 $\sum\limits_{i=1}^{n}a_{i}x_{i}$ 最小，给出最小值。
 \inputminted{cpp}{../src/数论/裴蜀定理.cpp}
 
-\subsection{连续数字的正约数集合}
-返回 $0$ 到 $n$ 的正约数集合，时间复杂度为 $O(n \log n)$。
-\inputminted{cpp}{../src/数论/连续数字的正约数集合.cpp}
-
 \subsection{原根}
 \paragraph{阶} 最小的整数 $k$ 使得 $a ^ k \equiv 1 \pmod m$，记为 $\delta_m(a)$。
 
@@ -718,6 +714,14 @@ $$\delta_m(ab)=\delta_m(a)\delta_m(b) \iff \gcd\left(\delta_m(a),\delta_p(b)\rig
     \subsubsection{求解全部数的欧拉函数}
     求解所有数的欧拉函数（小于等于 $n$ 且和 $n$ 互质的数的个数）。
     \inputminted{cpp}{../src/数论/欧拉函数（求解全部数的欧拉函数）.cpp}
+
+\subsection{连续数字的正约数集合}
+返回 $0$ 到 $n$ 的正约数集合，时间复杂度为 $O(n \log n)$。
+\inputminted{cpp}{../src/数论/连续数字的正约数集合.cpp}
+
+\subsection{连续数字的质因数集合}
+使用埃拉托斯特尼筛法，返回 $0$ 到 $n$ 的质因数集合，时间复杂度为 $O(n \log n)$。
+\inputminted{cpp}{../src/数论/连续数字的质因数集合（埃氏筛）.cpp}
 
 \subsection{Miller–Rabin 素性测试}
 可以看作常数复杂度。
