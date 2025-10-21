@@ -674,7 +674,7 @@ $$\delta_m(ab)=\delta_m(a)\delta_m(b) \iff \gcd\left(\delta_m(a),\delta_p(b)\rig
 
 
 \subsection{逆元}
-如果 $ax \equiv 1\pmod p$，则称 $x$ 为 $a \bmod p$ 的逆元，记作 $a^{-1}$，逆元仅在所求数与模数互质时存在。
+如果 $ax \equiv 1\pmod p$，则称 $x$ 为 $a \bmod p$ 的逆元，记作 $a^{-1}$ 或 $\inv(a)$，逆元仅在所求数与模数互质时存在。
 \paragraph{性质}
 \begin{itemize}
     \item 模 $p$ 意义下的 $\frac{a}{b}$ 即 $a \cdot \inv(b) \bmod p$。
@@ -685,15 +685,19 @@ $$\delta_m(ab)=\delta_m(a)\delta_m(b) \iff \gcd\left(\delta_m(a),\delta_p(b)\rig
 
 
     \subsubsection{费马小定理求逆元}
-    使用费马小定理与快速幂。单次计算的复杂度即为快速幂的复杂度 $O(\log x)$。要求模数 $p$ 必须是质数，且需要满足 $x$ 与 $p$ 互质。
+    单次计算的复杂度即为快速幂的复杂度 $O(\log x)$。要求模数 $p$ 必须是质数，且需要满足 $x$ 与 $p$ 互质。
     \inputminted{cpp}{../src/数论/费马小定理求逆元.cpp}
 
     \subsubsection{扩展欧几里得求逆元}
-    对模数 $p$ 没有限制，复杂度为 $O(\log x)$ ，常数比费马小定理求逆元大一些。
+    仅需要满足 $x$ 与 $p$ 互质，复杂度为 $O(\log \min\{x, p\})$ ，常数比费马小定理求逆元大一些。
     \inputminted{cpp}{../src/数论/扩展欧几里得求逆元.cpp}
 
+    \subsubsection{求多个逆元}
+    考虑序列 $\{a_i\}$ 的前缀积 $S_i$，因为乘积的逆元等于各个因子的逆元的乘积，反向递推得到 $S_{i-1}^{-1}=a_i \cdot S_i^{-1} \bmod p$，即有 $a_i^{-1}=S_{i-1} \cdot S_i^{-1} \bmod p$，复杂度为 $O(n + \log p)$。
+    \inputminted{cpp}{../src/数论/求多个逆元.cpp}
+
     \subsubsection{$O(n)$ 预处理逆元}
-    $i ^ {-1} = - \frac p i \left( p \bmod i \right) ^ {-1},\; p \in \mathbb{P}$
+    $O(n)$ 预处理得到 $1$ 到 $n$ 的逆元，原理为：$i ^ {-1} = - \frac p i \left( p \bmod i \right) ^ {-1},\; p \in \mathbb{P}$，仅适用于模数为质数的情况。
     \inputminted{cpp}{../src/数论/O(n)预处理逆元.cpp}
 
     \subsubsection{计算组合数}
