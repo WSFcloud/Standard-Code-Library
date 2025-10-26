@@ -1,5 +1,3 @@
-#include <bits/stdc++.h>
-using namespace std;
 using ull = unsigned long long;
 // Test 1: 循环
 void test_xor_loop() {

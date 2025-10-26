@@ -1,7 +1,7 @@
 // 求逆元
 ll inv(ll x, ll p);
 // 拉格朗日插值
-ll lagrange(vector<ll> x, vector<ll> y, int n, ll k, ll p) {
+ll lagrange(vector<ll> &x, vector<ll> &y, int n, ll k, ll p) {
     ll s1 = 0, s2 = 0, ans = 0;
     for (int i = 0; i < n; i++) {
         s1 = y[i] % p, s2 = 1;

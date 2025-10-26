@@ -1,7 +1,3 @@
-#include <vector>
-#include <numeric>
-using namespace std;
-
 struct DSU {
     vector<int> f, siz; // 0 base
     DSU() {}

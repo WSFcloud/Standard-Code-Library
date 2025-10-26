@@ -1,4 +1,3 @@
-#include <cstdint>
 using ull = unsigned long long;
 constexpr int mod = 10000000;
 ull k1, k2;

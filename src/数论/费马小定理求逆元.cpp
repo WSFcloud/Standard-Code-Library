@@ -1,5 +1,3 @@
-using ll = long long;
-
 // 快速幂
 int qpow(ll a, ll b, int p);
 // 求逆元

@@ -1,7 +1,4 @@
-#include <vector>
-using namespace std;
 vector<int> minp, primes;
-
 void sieve(int n) {
     minp.assign(n + 1, 0);
     primes.clear();
@@ -21,7 +18,7 @@ void sieve(int n) {
         }
     }
 }
-// 检查是否为素数
+// 检查是否为质数
 bool isprime(int n) {
     return minp[n] == n;
 }

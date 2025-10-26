@@ -1,4 +1,4 @@
-vector<int> kahn(vector<vector<int>> graph) {
+vector<int> kahn(vector<vector<int>> &graph) {
     vector<int> res;
     res.reserve(n);
     queue<int> q;

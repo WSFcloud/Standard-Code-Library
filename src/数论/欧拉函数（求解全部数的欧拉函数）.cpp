@@ -1,22 +1,16 @@
-#include <vector>
-#include <algorithm>
-using namespace std;
-constexpr int N = 1E7;
-constexpr int P = 1000003;
-bool isprime[N + 1];
-int phi[N + 1];
-vector<int> primes;
-
-void eulers_totient_function() {
-    fill(isprime + 2, isprime + N + 1, true);
+vector<int> primes, isprime, phi;
+void eulers_totient_function(int n) {
+    isprime.resize(n + 1, 1);
+    isprime[0] = 0, isprime[1] = 0;
+    phi.resize(n + 1);
     phi[1] = 1;
-    for (int i = 2; i <= N; i++) {
+    for (int i = 2; i <= n; i++) {
         if (isprime[i]) {
             primes.push_back(i);
             phi[i] = i - 1;
         }
         for (auto p : primes) {
-            if (i * p > N) {
+            if (i * p > n) {
                 break;
             }
             isprime[i * p] = false;

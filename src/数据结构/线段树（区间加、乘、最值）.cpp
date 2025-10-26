@@ -1,8 +1,3 @@
-#include <vector>
-#include <algorithm>
-using namespace std;
-using ll = long long;
-
 constexpr ll mod = 998244353;
 struct Info {
     ll sum;

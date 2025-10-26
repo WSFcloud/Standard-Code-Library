@@ -1,7 +1,4 @@
-#include <iostream>
-#include <cstdio>
-#include <cstring>
-#include <cstdlib>
+#include <bits/stdc++.h>
 using namespace std;
 #define MAXN 9999
 #define MAXSIZE 1010

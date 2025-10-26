@@ -1,14 +1,9 @@
-#include <vector>
-#include <queue>
-#include <climits>
-using namespace std;
-
-const int INF = INT_MAX;
+constexpr int INF = INT_MAX;
 int n, m, s = 1;
 struct edge {
     int to, weight;
 };
-bool spfa(vector<vector<edge>> graph) {
+bool spfa(vector<vector<edge>> &graph) {
     // cnt数组记录节点的进队次数，用于检测负环
     vector<int> dis(n + 1, INF), vis(n + 1, 0), cnt(n + 1, 0);
     dis[s] = 0;

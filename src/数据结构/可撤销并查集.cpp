@@ -1,9 +1,3 @@
-#include <vector>
-#include <array>
-#include <algorithm>
-#include <numeric>
-using namespace std;
-
 struct DSU {
     vector<int> f, siz;        // 0 base
     vector<array<int, 2>> his; // 0 base

@@ -1,6 +1,3 @@
-#include <iostream>
-#include <algorithm>
-using namespace std;
 using real = long double;
 constexpr real EPS = 1E-7;
 
@@ -35,7 +32,7 @@ void bsearch_ternary_lower() {
     }
     cout << lo << endl;
 }
-int main() {
+void solve() {
     auto check = [&](double x) {
         // 检查逻辑
     };
@@ -62,5 +59,4 @@ int main() {
         });
     });
     cout << result << endl;
-    return 0;
 }

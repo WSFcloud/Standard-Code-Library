@@ -1,6 +1,3 @@
-#include <string>
-using namespace std;
-
 // 将奇数下标的字母大小写转换
 void rev(string &s) {
     int l = s.size();

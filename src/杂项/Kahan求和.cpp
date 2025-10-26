@@ -1,4 +1,4 @@
-double kahanSum(vector<double> vec) {
+double kahan_sum(vector<double> &vec) {
     double sum = 0, c = 0;
     for (auto x : vec) {
         double y = x - c;

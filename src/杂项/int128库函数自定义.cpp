@@ -1,8 +1,4 @@
-#include <algorithm>
-#include <string>
-using namespace std;
 using i128 = __int128;
-
 ostream &operator<<(ostream &os, i128 n) {
     if (n == 0) {
         return os << 0;
@@ -15,7 +11,7 @@ ostream &operator<<(ostream &os, i128 n) {
     reverse(s.begin(), s.end());
     return os << s;
 }
- 
+
 i128 toi128(const string &s) {
     i128 n = 0;
     for (auto c : s) {
@@ -23,7 +19,7 @@ i128 toi128(const string &s) {
     }
     return n;
 }
- 
+
 i128 sqrti128(i128 n) {
     i128 lo = 0, hi = 1E16;
     while (lo < hi) {

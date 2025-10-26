@@ -1,5 +1,3 @@
-using ll = long long;
-
 // 普通快速幂
 int qpow(ll a, ll b, int p) {
     int res = 1;

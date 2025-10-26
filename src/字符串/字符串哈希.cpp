@@ -1,6 +1,6 @@
-const int N = 1E5;
-const int mod = 1E9 + 7;
-const int base = 127;
+constexpr int N = 1E5;
+constexpr int mod = 1E9 + 7;
+constexpr int base = 127;
 struct StringHash {
     int MOD, BASE;
     vector<int> val;

@@ -1,7 +1,3 @@
-#include <iostream>
-#include <chrono>
-using namespace std;
-
 // main函数开头定义Timer timer;即可
 struct Timer {
 	chrono::steady_clock::time_point start;

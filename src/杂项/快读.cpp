@@ -1,8 +1,3 @@
-#include <cstdint>
-#include <cstdio>
-#include <cstring>
-using namespace std;
-
 struct IO {
     char a[1 << 25], b[1 << 25], *s, *t;
     IO() :

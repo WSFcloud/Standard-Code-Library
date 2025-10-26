@@ -1,8 +1,5 @@
-#include <bits/stdc++.h>
-using namespace std;
-const int INF = INT_MAX;
-
-int main() {
+constexpr int INF = INT_MAX;
+void solve() {
     int n;
     cin >> n;
     vector<int> a(n + 1);
@@ -19,5 +16,4 @@ int main() {
         }
     }
     cout << ans << endl;
-    return 0;
 }

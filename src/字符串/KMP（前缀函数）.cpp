@@ -1,7 +1,3 @@
-#include <vector>
-#include <string>
-using namespace std;
-
 vector<int> kmp(string &s) {
     int n = s.size();
     vector<int> f(n + 1);

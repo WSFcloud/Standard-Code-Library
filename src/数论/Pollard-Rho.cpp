@@ -1,6 +1,4 @@
-using ll = long long;
-
-// 需要使用Miller-Rabin、O(1)快速乘和gcd函数
+// 需要使用Miller-Rabin、O(1)快速乘
 ll Pollards_Rho(ll n) {
     // assert(n > 1);
     if (Miller_Rabin(n)) {
@@ -24,7 +22,7 @@ ll Pollards_Rho(ll n) {
         }
     }
 }
-void solve(ll n, vector<ll> &v) {
+void rec(ll n, vector<ll> &v) {
     if (n == 1) {
         return;
     }
@@ -36,8 +34,8 @@ void solve(ll n, vector<ll> &v) {
         v.push_back(p); // 说明n本身就是质数
         return;
     }
-    solve(p, v); // 递归分解两半
-    solve(n / p, v);
+    rec(p, v); // 递归分解两半
+    rec(n / p, v);
 }
 // v用于存分解出来的质因子, 重复的会放多个
 void factorize(ll n, vector<ll> &v) {
@@ -46,6 +44,6 @@ void factorize(ll n, vector<ll> &v) {
             v.push_back(i);
             n /= i;
         }
-    solve(n, v);
+    rec(n, v);
     sort(v.begin(), v.end()); // 从小到大排序后返回
 }

@@ -1,7 +1,3 @@
-#include <iostream>
-using namespace std;
-using ll = long long;
-
 bool check(int i) {
     // 检查逻辑
 }

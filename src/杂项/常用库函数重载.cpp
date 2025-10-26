@@ -1,5 +1,3 @@
-#include <cmath>
-using namespace std;
 using ll = long long;
 using i128 = __int128;
 

@@ -1,6 +1,4 @@
-#include <iostream>
-using namespace std;
-int main() {
+void test() {
     cout << "C++ Standard: ";
     if (__cplusplus == 202002L)
         cout << "C++20" << endl;
@@ -13,5 +11,4 @@ int main() {
     else
         cout << "Pre-C++11 or other: " << __cplusplus << endl;
     cout << "Compiler version: " << __VERSION__ << endl;
-    return 0;
 }
