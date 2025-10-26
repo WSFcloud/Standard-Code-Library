@@ -723,6 +723,10 @@ $$\delta_m(ab)=\delta_m(a)\delta_m(b) \iff \gcd\left(\delta_m(a),\delta_p(b)\rig
 使用埃拉托斯特尼筛法，返回 $0$ 到 $n$ 的质因数集合，时间复杂度为 $O(n \log n)$。
 \inputminted{cpp}{../src/数论/连续数字的质因数集合（埃氏筛）.cpp}
 
+\subsection{判断质数}
+使用六倍试除法，比朴素的试除法快，时间复杂度为 $O(\sqrt n)$。
+\inputminted{cpp}{../src/数论/连续数字的质因数集合（埃氏筛）.cpp}
+
 \subsection{Miller–Rabin 素性测试}
 可以看作常数复杂度。
 \inputminted{cpp}{../src/数论/Miller–Rabin素性测试.cpp}
@@ -949,6 +953,9 @@ $$
 
 \subsection{全排列生成}
 \inputminted{cpp}{../src/杂项/全排列生成.cpp}
+
+\subsection{枚举全部子集}
+\inputminted{cpp}{../src/杂项/枚举全部子集.cpp}
 
 \subsection{枚举 $k$ 大小子集}
 \inputminted{cpp}{../src/杂项/枚举k大小子集.cpp}
