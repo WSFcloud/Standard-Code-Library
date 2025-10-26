@@ -51,8 +51,9 @@ struct Matrix {
         Matrix res(row, a.col);
         for (int i = 0; i < row; i++) {
             for (int k = 0; k < col; k++) {
-                for (int j = 0; j < a.col; j++)
-                    res[i][j] += mat[i][k] * a[k][j];
+                for (int j = 0; j < a.col; j++) {
+                    res[i][j] = res[i][j] + mat[i][k] * a[k][j];
+                }
             }
         }
         return res;
@@ -120,35 +121,55 @@ struct Matrix {
         }
         return {true, invm};
     }
-    // 行列式计算（高斯消元法）
-    T determinant() const {
+    // 行列式计算（高斯消元法），结果对 p 取模
+    T determinant(T p) const {
         Matrix a = *this;
-        T det = T(1);
-        for (int i = 0; i < row; i++) {
+        int n = row;
+        T res = T(1);
+        bool sign = false; // 交换次数的奇偶性
+        for (int i = 0; i < n; i++) {
             int pivot = i;
-            for (int j = i; j < row; j++) {
-                if (a[j][i] != T(0)) {
+            // 寻找第一个非零主元
+            for (int j = i; j < n; j++) {
+                if (a[j][i] % p != 0) {
                     pivot = j;
                     break;
                 }
             }
-            if (a[pivot][i] == T(0)) {
-                return T(0);
+            if (a[pivot][i] % p == 0) {
+                return 0; // 无法找到主元
+            }
+            for (int j = i + 1; j < n; j++) {
+                if (a[j][i] % p != 0 && a[j][i] < a[pivot][i]) {
+                    pivot = j;
+                }
             }
             if (i != pivot) {
                 swap(a[i], a[pivot]);
-                det = -det;
+                sign = !sign;
             }
-            det *= a[i][i];
-            T inv = T(1) / a[i][i];
-            for (int j = i + 1; j < row; j++) {
-                T factor = a[j][i] * inv;
-                for (int k = i; k < row; k++) {
-                    a[j][k] -= factor * a[i][k];
+            // 高斯消元
+            for (int j = i + 1; j < n; j++) {
+                if (a[j][i] > a[i][i]) {
+                    swap(a[j], a[i]);
+                    sign = !sign;
+                }
+                // 辗转相除法消去非零元素
+                while (a[j][i] != 0) {
+                    ll k = a[i][i] / a[j][i];
+                    for (int t = i; t < n; t++) {
+                        a[i][t] = (a[i][t] + (p - k % p) * a[j][t]) % p;
+                    }
+                    swap(a[j], a[i]);
+                    sign = !sign;
                 }
             }
+            res = res * a[i][i] % p;
         }
-        return det;
+        if (sign) {
+            res = (p - res) % p;
+        }
+        return (res + p) % p;
     }
     // 单位矩阵
     static Matrix identity(int n) {
