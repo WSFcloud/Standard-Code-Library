@@ -50,6 +50,12 @@
 \usepackage{afterpage}           % 延迟插入命令到当前页结束后
 
 
+\usepackage{booktabs}
+\usepackage{amsmath}
+\usepackage{caption}
+\usepackage{geometry}
+\usepackage{tabularray}
+
 % 页边距设置
 \geometry{left=1.5cm,right=1.5cm,top=1.5cm,bottom=1.5cm}
 % 行距设置
@@ -767,6 +773,9 @@ $$\delta_m(ab)=\delta_m(a)\delta_m(b) \iff \gcd\left(\delta_m(a),\delta_p(b)\rig
     \subsubsection{区间加、乘、最值}
     \inputminted{cpp}{../src/数据结构/线段树（区间加、乘、最值）.cpp}
 
+\subsection{树的直径}
+\inputminted{cpp}{../src/数据结构/树的直径.cpp}
+
 %     \subsubsection{维护矩形并}
 
 %     \subsubsection{非递归线段树}
@@ -1006,7 +1015,8 @@ $k1, k2$ 为随机数种子，生成 $[0, n)$ 区间上的伪随机数。
         \item \mintinline{cpp}|std::tuple_cat(...)|：传入几个 \mintinline{cpp}|tuple|，返回按顺序连起来的\mintinline{cpp}|tuple| 。
         \item 手动开启优化
         \inputminted{cpp}{../src/附录/C++/手动开启优化.cpp}
-
+        \item 输出内存占用大小
+        \inputminted{cpp}{../src/附录/C++/输出内存占用大小.cpp}
     \end{enumerate}
     
 %     \subsubsection{常见错误}
@@ -1025,15 +1035,15 @@ $k1, k2$ 为随机数种子，生成 $[0, n)$ 区间上的伪随机数。
         \inputminted{cpp}{../src/附录/环境测试/性能测试.cpp}
     \end{itemize}
 
-    \subsubsection{上机环境测试}
-    \begin{itemize}
-        \item 测试\mintinline{bash}{/usr/bin/time -v ./a}能否显示内存占用？
-        \item 测试本地性能和评测机性能差距。
-        \item \mintinline{bash}|lscpu| 命令显示硬件详细信息。
-        \item 测试 \mintinline{cpp}|__int128|, \mintinline{cpp}|__float128|, \mintinline{cpp}|long double|是否可用。
-        \item 测试代码长度限制，尝试触发 NO-OUTPUT, OUTPUT-LIMIT, RUN-ERROR。
-        \item 测试 \mintinline{cpp}|pragma|是否 CE。
-    \end{itemize}
+    % \subsubsection{上机环境测试}
+    % \begin{itemize}
+    %     \item 测试\mintinline{bash}{/usr/bin/time -v ./a}能否显示内存占用？
+    %     \item 测试本地性能和评测机性能差距。
+    %     \item \mintinline{bash}|lscpu| 命令显示硬件详细信息。
+    %     \item 测试 \mintinline{cpp}|__int128|, \mintinline{cpp}|__float128|, \mintinline{cpp}|long double|是否可用。
+    %     \item 测试代码长度限制，尝试触发 NO-OUTPUT, OUTPUT-LIMIT, RUN-ERROR。
+    %     \item 测试 \mintinline{cpp}|pragma|是否 CE。
+    % \end{itemize}
 
     \subsubsection{编译选项}
     \begin{itemize}
@@ -1098,6 +1108,55 @@ $k1, k2$ 为随机数种子，生成 $[0, n)$ 区间上的伪随机数。
 \mintinline{bash}|vim ~/.vimrc|
 \inputminted{bash}{../src/附录/vim配置.sh}
 
+\subsection{速查表}
+    \subsubsection{不同质因子/约数个数}
+    最大不同质因子个数 $\omega(n)$ 与约数个数 $d(n)$ 随 $n$ 的增长变化情况：
+    \begin{table}[htbp]
+        \centering
+        \setlength{\tabcolsep}{6pt} % 调整列间距
+        \renewcommand{\arraystretch}{1.2} % 调整行高
+        \begin{tabular}{|c|c|c|c|c|c|c|c|c|c|}
+        \hline
+        $n \le$ & $10^1$ & $10^2$ & $10^3$ & $10^4$ & $10^5$ & $10^6$ & $10^7$ & $10^8$ & $10^9$ \\
+        \hline
+        $\max\{\omega(n)\}$ & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 8 & 9 \\
+        \hline
+        $\max\{d(n)\}$ & 4 & 12 & 32 & 64 & 128 & 240 & 448 & 768 & 1344 \\
+        \hline
+        $n \le$ & $10^{10}$ & $10^{11}$ & $10^{12}$ & $10^{13}$ & $10^{14}$ & $10^{15}$ & $10^{16}$ & $10^{17}$ & $10^{18}$ \\
+        \hline
+        $\max\{\omega(n)\}$ & 10 & 10 & 11 & 12 & 12 & 13 & 13 & 14 & 15 \\
+        \hline
+        $\max\{d(n)\}$ & 2304 & 4032 & 6720 & 10752 & 17280 & 26880 & 41472 & 64512 & 103680 \\
+        \hline
+    \end{tabular}
+    \end{table}
+
+    \subsubsection{多项式复杂度}
+    \begin{table}[htbp]
+        \centering
+        \renewcommand{\arraystretch}{1.2}
+        \setlength{\tabcolsep}{8pt}
+
+        \begin{tabular}{|p{10cm}|c|}
+        \hline
+        logbit-OV、LCS、两数最大 or/最小 and & $O(n^2)$ \\ \hline
+        nbit-OV & $O(n^{\omega})$ \\ \hline
+        链 mex & $O(n^{\omega/2})$ \\ \hline
+        min + 卷积 & $O(n^2)$ \\ \hline
+        3SUM、4SUM、两对数和相等、三点共线、三线共点、长为 $3$ 等差数列 & $O(n^2)$ \\ \hline
+        3XOR & $O(n^2)$ \\ \hline
+        APSP、min + 矩阵乘法 & $O(n^3)$ \\ \hline
+        + ×/01 矩阵乘/矩阵求逆/高斯消元 & $O(n^{\omega})$ \\ \hline
+        min max 矩阵乘 & $O(n^{2\omega/(\omega+3)/2})$ \\ \hline
+        and or 矩阵乘、稠密图传递闭包 & $O(n^{2\sim \omega})$ \\ \hline
+        稀疏图传递闭包 & $O(mn)$ \\ \hline
+        区间相等对/逆序对、链颜色数、稀疏图三元环计数、行和列求和、区间 $\pm1$ 全局数 $0$ & $O(n^{\omega/2 \sim 2\omega/(\omega+1)})$ \\ \hline
+        \end{tabular}
+    \end{table}
+
+    \subsubsection{问题规模与时间复杂度}
+
 \subsection{注意事项}
 
     \subsubsection{场外相关}
@@ -1114,6 +1173,12 @@ $k1, k2$ 为随机数种子，生成 $[0, n)$ 区间上的伪随机数。
         \item 检查本机环境与评测机环境。
         \item 测试提交方式与 submit 命令。
         \item 熟悉场地位置。
+        \item 测试\mintinline{bash}{/usr/bin/time -v ./a}能否显示内存占用？
+        \item 测试本地性能和评测机性能差距。
+        \item \mintinline{bash}|lscpu| 命令显示硬件详细信息。
+        \item 测试 \mintinline{cpp}|__int128|, \mintinline{cpp}|__float128|, \mintinline{cpp}|long double|是否可用。
+        \item 测试代码长度限制，尝试触发 NO-OUTPUT, OUTPUT-LIMIT, RUN-ERROR。
+        \item 测试 \mintinline{cpp}|pragma|是否 CE。
     \end{itemize}
 
     \subsubsection{常见错误}
