@@ -1,7 +1,8 @@
 struct info {
     int l, r;
     mutable ll v;
-    info(int l_, int r_ = -1, ll v_ = 0) : l(l_), r(r_), v(v_) {}
+    info(int l_, int r_ = -1, ll v_ = 0) :
+        l(l_), r(r_), v(v_) {}
     bool operator<(const info &p) const {
         return l < p.l;
     }
@@ -9,7 +10,8 @@ struct info {
 struct ODT {
     int n;
     set<info> s;
-    ODT(int n_, ll init_v) : n(n_) {
+    ODT(int n_, ll init_v) :
+        n(n_) {
         s.insert(info(0, n, init_v));
     }
     // 在 pos 位置分割区间，返回包含 pos 的新区间迭代器

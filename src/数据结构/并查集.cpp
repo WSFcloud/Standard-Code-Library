@@ -2,7 +2,8 @@ struct DSU {
     vector<int> f, siz; // 父节点、集合大小
     vector<int> ecnt;   // 每个集合的边数量
     vector<bool> isc;   // 每个集合是否有环
-    DSU(int n) : f(n), siz(n, 1), ecnt(n, 0), isc(n, false) {
+    DSU(int n) :
+        f(n), siz(n, 1), ecnt(n, 0), isc(n, false) {
         iota(f.begin(), f.end(), 0);
     }
     int find(int x) {
