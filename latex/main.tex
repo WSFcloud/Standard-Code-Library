@@ -903,6 +903,21 @@ $$
 时间复杂度为 $O(n^2)$，可以使用二分优化到 $O(n\log n)$。
 \inputminted{cpp}{../src/动态规划/最长不下降子序列（LIS）.cpp}
 
+\subsection{最长公共子序列（LCS）}
+\paragraph{问题}给定两个字符串 $a$ 和 $b$，返回这两个字符串的最长公共子序列的长度。
+
+设 $f(i, j)$ 表示字符串 $a$ 的前 $i$ 个字符与字符串 $b$ 的前 $j$ 个字符的最长公共子序列长度，状态转移方程为：
+
+$$
+f(i, j) = 
+\begin{cases} 
+0, & \text{if } i = 0 \text{ or } j = 0 \\
+f(i-1, j-1) + 1, & \text{if } i > 0, j > 0 \text{ and } a_i = b_j \\
+\max(f(i-1, j), f(i, j-1)), & \text{if } i > 0, j > 0 \text{ and } a_i \neq b_j
+\end{cases}
+$$
+\inputminted{cpp}{../src/动态规划/最长公共子序列（LCS）.cpp}
+
 % \subsection{插头 DP}
 
 
