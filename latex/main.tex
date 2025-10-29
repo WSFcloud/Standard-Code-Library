@@ -911,10 +911,14 @@ $$
 
 % \subsection{二分图}
 
-% \subsection{网络流}
-%     \subsubsection{最大流}
+\subsection{网络流}
+    \subsubsection{Dinic 最大流}
+    使用 Dinic 算法，理论最坏   复杂度为 $O(n^2m)$。
+    \inputminted{cpp}{../src/图论/Dinic最大流.cpp}
 
-%     \subsubsection{费用流}
+    \subsubsection{最小费用最大流}
+    使用 SSP 算法，每次寻找增广路的时间复杂度为 $O(m \log n)$，设该网络的最大流为 $f$，则最坏时间复杂度为 $O(f \cdot m \log n)$。实际上可以构造 $m=n^2$，$f=2^{\frac{n}{2}}$ 的网络使得 SSP 算法的时间复杂度达到 $O(n^3 \cdot 2^{\frac{n}{2}})$。
+    \inputminted{cpp}{../src/图论/最小费用最大流.cpp}
 
 
 \newpage
