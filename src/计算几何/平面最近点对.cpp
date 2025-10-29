@@ -33,7 +33,7 @@ double Closest_Pair(int left, int right) {
     d = min(d1, d2);
     int cnt = 0;
     for (int i = left; i <= right; i++) {
-        if (fabs(p[mid].x - p[i].x) <= d) {
+        if (abs(p[mid].x - p[i].x) <= d) {
             tmpt[cnt++] = p[i];
         }
     }

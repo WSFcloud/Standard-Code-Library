@@ -172,7 +172,7 @@ struct polygon {
         for (int i = 0; i < n; i++) {
             sum += (p[i] ^ p[(i + 1) % n]);
         }
-        return fabs(sum) / 2;
+        return abs(sum) / 2;
     }
     //得到方向
     // 1 表示逆时针，0 表示顺时针
@@ -211,7 +211,7 @@ struct polygon {
             else
                 ans -= c.areatriangle(p[i], p[j]);
         }
-        return fabs(ans);
+        return abs(ans);
     }
     //多边形和圆关系
     // 2 圆完全在多边形内

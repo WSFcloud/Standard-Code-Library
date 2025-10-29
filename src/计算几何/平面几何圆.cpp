@@ -103,7 +103,7 @@ struct circle {
             return 5;
         if (sgn(d - r - v.r) == 0)
             return 4;
-        double l = fabs(r - v.r);
+        double l = abs(r - v.r);
         if (sgn(d - r - v.r) < 0 && sgn(d - l) > 0)
             return 3;
         if (sgn(d - l) == 0)
@@ -267,7 +267,7 @@ struct circle {
                 double arg = p.rad(q[i], q[i + 1]);
                 res += r * r * arg / 2.0;
             } else {
-                res += fabs((q[i] - p) ^ (q[i + 1] - p)) / 2.0;
+                res += abs((q[i] - p) ^ (q[i + 1] - p)) / 2.0;
             }
         }
         return res;
