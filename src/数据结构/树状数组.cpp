@@ -1,7 +1,7 @@
 template <typename T>
 struct Fenwick {
     int n;
-    vector<T> a; // 0 base
+    vector<T> a;
     Fenwick(int n_) :
         n(n_), a(n_, T{}) {}
     Fenwick(const vector<T> &v) :
@@ -10,13 +10,13 @@ struct Fenwick {
             add(i, v[i]);
         }
     }
-    // 下标x位置增加值v
+    // 下标 x 位置增加值 v
     void add(int x, const T &v) {
         for (int i = x + 1; i <= n; i += i & -i) {
             a[i - 1] = a[i - 1] + v;
         }
     }
-    // 查询区间[0, x)的和
+    // 查询区间 [0, x) 的和
     T sum(int x) {
         T res{};
         for (int i = x; i > 0; i -= i & -i) {
@@ -24,11 +24,11 @@ struct Fenwick {
         }
         return res;
     }
-    // 查询区间[l, r)的和
+    // 查询区间 [l, r) 的和
     T range_sum(int l, int r) {
         return sum(r) - sum(l);
     }
-    // 查找前缀和小于等于k的最大下标
+    // 查找前缀和小于等于 k 的最大下标
     int find(const T &k) {
         int x = 0;
         T cur{};

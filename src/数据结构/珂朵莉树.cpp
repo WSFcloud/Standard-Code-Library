@@ -36,7 +36,7 @@ struct ODT {
         auto inserted = s.insert(info(pos, R, V));
         return inserted.first;
     }
-    // 将区间 [l, r) 的所有	值设为 x
+    // 将区间 [l, r) 的所有值设为 x
     void assign(int l, int r, ll x) {
         auto itr = split(r);
         auto itl = split(l);

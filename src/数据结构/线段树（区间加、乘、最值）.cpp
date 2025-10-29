@@ -6,7 +6,7 @@ struct Info {
         return {(sum + info.sum) % mod, max(maxv, info.maxv)};
     }
 };
-// 线段为0 base，树为1 base
+// 线段为 0 base，树为 1 base
 struct SegmentTree {
     int n;
     vector<ll> addtag, multag;
@@ -28,7 +28,7 @@ struct SegmentTree {
         info[p].sum = info[p].sum * v % mod;
         info[p].maxv *= v;
     }
-    // 将节点p的懒标记向子节点下传
+    // 将节点 p 的懒标记向子节点下传
     void push(int p, int l, int r) {
         int mid = (l + r) / 2;
         make_multag(2 * p, multag[p]);
@@ -49,7 +49,7 @@ struct SegmentTree {
         push(p, l, r);
         return query(2 * p, l, mid, x, y) + query(2 * p + 1, mid, r, x, y);
     }
-    // 查询[x, y)区间的数据信息
+    // 查询 [x, y) 区间的数据信息
     Info query(int x, int y) {
         return query(1, 0, n, x, y);
     }
@@ -66,7 +66,7 @@ struct SegmentTree {
         range_add(2 * p + 1, mid, r, x, y, v);
         pull(p);
     }
-    // 将值v加到[x, y)区间
+    // 将值 v 加到 [x, y) 区间
     void range_add(int x, int y, ll v) {
         range_add(1, 0, n, x, y, v);
     }
@@ -83,7 +83,7 @@ struct SegmentTree {
         range_mul(2 * p + 1, mid, r, x, y, v);
         pull(p);
     }
-    // 将值v乘到[x, y)区间
+    // 将值 v 乘到 [x, y) 区间
     void range_mul(int x, int y, ll v) {
         range_mul(1, 0, n, x, y, v);
     }
@@ -101,7 +101,7 @@ struct SegmentTree {
         }
         pull(p);
     }
-    // 修改位置x的值为v
+    // 修改位置 x 的值为 v
     void modify(int x, const Info &v) {
         modify(1, 0, n, x, v);
     }
@@ -115,7 +115,7 @@ struct SegmentTree {
         build(2 * p + 1, mid, r, a);
         pull(p);
     }
-    // 在给定数组a上建立线段树
+    // 在给定数组 a 上建立线段树
     void build(const vector<ll> &a) {
         build(1, 0, n, a);
     }
