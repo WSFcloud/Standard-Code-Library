@@ -841,6 +841,10 @@ $$\delta_m(ab)=\delta_m(a)\delta_m(b) \iff \gcd\left(\delta_m(a),\delta_p(b)\rig
 处理颜色段均摊等区间赋值操作和区间查询问题，复杂度为 $O(n \log \log n)$，需要保证数据随机。
 \inputminted{cpp}{../src/数据结构/珂朵莉树.cpp}
 
+\subsection{ST 表}
+预处理复杂度为 $O(n \log n)$，查询复杂度为 $O(1)$，不支持修改操作。
+\inputminted{cpp}{../src/数据结构/ST表.cpp}
+
 %     \subsubsection{维护矩形并}
 
 %     \subsubsection{非递归线段树}
@@ -1291,6 +1295,7 @@ $k1, k2$ 为随机数种子，生成 $[0, n)$ 区间上的伪随机数。
     \begin{itemize}
         \item 不要着急，着急没用。
         \item 签到题写完不要急着交，样例一般比较弱，一定要仔细检查是否哪里写错了。
+        \item 算清楚当前问题规模下的可行复杂度。
         \item 想好细节再上机。
         \item 榜不一定能准确反映难度。
         \item 输了游戏，还有人生。
