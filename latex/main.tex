@@ -399,7 +399,7 @@
 \subsection{自适应辛普森积分}
 求函数 $f(x)$ 在区间 $[l, r]$ 上的定积分，$\rm{eps}$ 指定精度。
 \inputminted{cpp}{../src/数学/自适应辛普森积分.cpp}
-    
+
 \subsection{常见数列}
 查表参见\detailedref{OEIS}。
     \subsubsection{斐波那契数列、卢卡斯数}
@@ -735,6 +735,22 @@ $$\delta_m(ab)=\delta_m(a)\delta_m(b) \iff \gcd\left(\delta_m(a),\delta_p(b)\rig
     \subsubsection{求解全部数的欧拉函数}
     求解所有数的欧拉函数（小于等于 $n$ 且和 $n$ 互质的数的个数）。
     \inputminted{cpp}{../src/数论/欧拉函数（求解全部数的欧拉函数）.cpp}
+
+    \subsubsection{常见性质}
+    \begin{enumerate}
+        \item $\gcd(a, m) = \gcd(a+x,m) \Leftrightarrow \gcd(a, m) = \gcd(x,m)$。求解上式满足条件的 $x$ 的数量即为求小于 $\frac{m}{\gcd(a,m)}$ 且与其互质的数的个数，即用欧拉函数求解 $\varphi \Big(\frac{m}{\gcd(a,m)} \Big)$。
+        \item $1 \sim n$ 中与 $n$ 互质的数之和为 $\frac{n \cdot \varphi (n)}{2}$ 。
+        \item 若 $a, b$ 互质，则 $\varphi (a \cdot b) = \varphi (a) \cdot \varphi (b)$ 。实际上，所有满足这一条件的函数统称为积性函数。
+        \item 若 $f$ 是积性函数，且有 $\displaystyle n = \prod ^m _{i =1} p_i ^ {c_i}$，那么 $\displaystyle f(n) = \prod ^m _{i =1} f( p_i ^ {c_i} )$。
+        \item $\displaystyle\sum _{d \mid n} \varphi (d)= n$。如 $n=10$，则 $d=\{10, 5, 2, 1\}$，那么 $10 = \varphi (10) + \varphi (5) + \varphi (2) + \varphi (1)$。
+        \item 欧拉反演：$\displaystyle\sum_{i = 1}^{n} \gcd(i, n) = \sum_{d|n} \left\lfloor \frac{n}{d} \right\rfloor \varphi (d)$
+        \item 若 $p$ 为质数，且满足 $p \mid n, p^2 \mid n$，那么 $\varphi (n) = \varphi (\frac{n}{p}) \cdot p$。
+        \item 若 $p$ 为质数，且满足 $p \mid n, p^2 \nmid n$，那么 $\varphi (n) = \varphi (\frac{n}{p}) \cdot (p-1)$。
+        \item $\displaystyle \sum_{i=1}^n \sum_{j=1}^n \gcd(i,j) = \sum_{d=1}^n \left\lfloor\frac{n}{d}\right\rfloor^2 \varphi (d)$。
+        \item 欧拉定理：若 $\gcd(a, m)=1$，则 $a^{\varphi (m)} \equiv 1 \pmod m$。
+    \end{enumerate}
+    
+
 
 \subsection{连续数字的正约数集合}
 返回 $0$ 到 $n$ 的正约数集合，时间复杂度为 $O(n \log n)$。
