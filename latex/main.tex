@@ -805,18 +805,59 @@ $$\delta_m(ab)=\delta_m(a)\delta_m(b) \iff \gcd\left(\delta_m(a),\delta_p(b)\rig
     \subsubsection{多圆面积并}
     \inputminted{cpp}{../src/计算几何/多圆面积并.cpp}
 
+    \subsubsection{常用公式}
+    \begin{itemize}
+        \item \textbf{三角形}
+        \begin{enumerate}
+            \item 半周长：$P=\frac{a+b+c}{2}$
+            \item 面积：$S=\frac{1}{2}bc \sin A=rP$，$r$ 为三角形内切圆半径。
+            \item 正三角形面积：$S=\dfrac{\sqrt 3 a^2}{4}$
+            \item 海伦公式：$S=\sqrt{P(P-a)(P-b)(P-c)}$
+            \item 角 $A$ 到 $BC$ 边的中线长度: $\frac{\sqrt{2(b^2+c^2)-a^2}}{2} = \frac{\sqrt{b^2+c^2-2bccosA}}{2}$
+            \item 角 $A$ 的角平分线长度：$\frac{\sqrt{bc((b+c)^2-a^2)}}{b+c} = \frac{2bc \cos\frac{A}{2}}{b+c}$
+            \item $BC$ 边的高线长度：$H_a = b\sin C = c\sin B = \sqrt{b^2-(\frac{a^2+b^2-c^2}{2a})^2}$
+            \item 内切圆半径：$r = a \sin \frac{B}{2} \sin \frac{C}{2} \sin \frac{B+C}{2}=\frac{S}{P}$
+            \item 外接圆半径：$R = \frac{abc}{4S} =  \frac{a}{2 \sin A} = \frac{b}{2 \sin B} = \frac{c}{2 \sin C}$
+        \end{enumerate}
+
+        \item \textbf{四边形} \\
+        \noindent 记 $D_1, D_2$ 为对角线，$M$ 为对角线中点连线，$A$ 为对角线夹角。
+        \begin{enumerate}
+            \item $a^2+b^2+c^2+d^2=D_1^2+D_2^2+4M^2$
+            \item 面积：$S=\frac{D_1D_2 \sin A}{2}$
+            \item 若为圆的内接四边形，则：$ac+bd=D_1D_2$
+            \item 若为圆的内接四边形，则：$S=\sqrt{(P-a)(P-b)(P-c)(P-d)}$，其中 $P$ 为半周长。
+        \end{enumerate}
+
+        \item \textbf{正 $n$ 边形} \\
+        \noindent $R$ 为外接圆半径，$r$ 为内切圆半径，$a$ 为边长。
+        \begin{enumerate}
+            \item 边长：$a = 2\sqrt{R^2-r^2} = 2R \sin \frac{A}{2} = 2r \tan \frac{A}{2}$
+            \item 面积：$S = \frac{n \cdot a \cdot r}{2}=\frac{nR^2 \sin A}{2}$
+            \item 中心角：$A = \frac{2\pi}{n}$
+            \item 内角：$C=\frac{(n-2)\pi}{n}$
+        \end{enumerate}
+
+        \item \textbf{圆} \\
+        \noindent $\theta$ 为对应的圆心角。
+        \begin{enumerate}
+            \item 弧长：$l=r\theta$
+            \item 弦长：$a = 2 \sqrt{2hr - h^2} = 2r \sin \frac{\theta}{2}$，其中 $h$ 是圆心到弦的距离。
+            \item 弓形高：$h = r - \sqrt{r^2-\frac{a^2}{4}}=r(1- \cos \frac{\theta}{2})$
+            \item 扇形面积：$S_1 = \frac{rl}{2} = \frac{\theta r^2}{2}$
+            \item 弓形面积：$S_2 = \frac{r_1 - a(r-h)}{2} = r^2\frac{\theta- \sin \theta}{2}$
+        \end{enumerate}
+    \end{itemize}
+
     \subsubsection{常用结论}
     \begin{enumerate}
-        \item 边心距是指正多边形的外接圆圆心到正多边形某一边的距离，边长为 $s$ 的正 $n$ 角形的边心距公式为 $\displaystyle a=\frac{t}{2\cdot\tan \frac{\pi}{n}}$，外接圆半径为 $R$ 的正 $n$ 角形的边心距公式为 $a=R\cdot \cos \dfrac{\pi}{n}$。
-        \item 三角形外接圆半径为 $\dfrac{a}{2\sin A}=\dfrac{abc}{4S}$，其中 $S$ 为三角形面积，内切圆半径为 $\dfrac{2S}{a+b+c}$。
+        \item 海伦公式在使用时需要注意越界问题，本质是铅锤定理，一般多使用叉乘计算三角形面积而不使用该公式。
+        \item 边心距是指正多边形的外接圆圆心到正多边形某一边的距离，边长为 $s$ 的正 $n$ 边形的边心距公式为 $\displaystyle a=\frac{t}{2\cdot\tan \frac{\pi}{n}}$，外接圆半径为 $R$ 的正 $n$ 边形的边心距公式为 $a=R\cdot \cos \dfrac{\pi}{n}$。
         \item 正 $n$ 边形圆心角为 $\dfrac{360^{\circ}}{n}$，圆周角为 $\dfrac{180^{\circ}}{n}$。定义正 $n$ 边形上的三个顶点 $A,B$ 和 $C$（可以不相邻），使得 $\angle ABC=\theta$ ，当 $n\le 360$ 时，$\theta$ 可以取 $1^{\circ}$ 到 $179^{\circ}$ 间的任何一个整数。
         \item 某一点 $B$ 到直线 $AC$ 的距离公式为 $\dfrac{|\vec{BA}\times \vec{BC}|}{|AC|}$，等价于 $\dfrac{|aX+bY+c|}{\sqrt{a^2+b^2}}$。
         \item \mintinline{cpp}|atan(y / x)| 函数仅用于计算第一、四象限的值，而 \mintinline{cpp}|atan2(y, x)| 则允许计算所有四个象限的正反切，在使用这个函数时，需要尽量保证 $x$ 和 $y$ 的类型为整数型，如果使用浮点数，实测会慢十倍。
         \item 在平面上有奇数个点 $A_0,A_1,\dots,A_n$ 以及一个点 $X_0$，构造 $X_1$ 使得 $X_0, X_1$ 关于 $A_0$ 对称、构造 $X_2$ 使得 $X_1, X_2$ 关于 $A_1$ 对称，……，构造 $X_j$ 使得 $X_{j-1}, X_j$ 关于 $A_{(j-1)\mod n}$ 对称。那么周期为 $2n$ ，即 $A_0$ 与 $A_{2n}$ 共点、$A_1$ 与 $A_{2n+1}$ 共点。
         \item 已知 $A(x_A, y_A)$ 和 $X(x_X,y_X)$ 两点及这两点的坐标，构造 $Y$ 使得 $X, Y$ 关于 $A$ 对称，那么 $Y$ 的坐标为 $(2\cdot x_A-x_X,2\cdot y_A-y_X)$。
-        \item 海伦公式：已知三角形三边长 $a,b$ 和 $c$，定义 $p=\dfrac{a+b+c}{2}$，则 $S_{\triangle}=\sqrt{p(p-a)(p-b)(p-c)}$，在使用时需要注意越界问题，本质是铅锤定理，一般多使用叉乘计算三角形面积而不使用该公式。
-        \item 正三角形面积：$S=\dfrac{\sqrt 3 a^2}{4}$。
-        \item 设扇形对应的圆心角弧度为 $\theta$ ，则面积为 $S=\frac{\theta}{2}\cdot R^2$。
     \end{enumerate}
 
 \subsection{立体几何}
@@ -828,6 +869,42 @@ $$\delta_m(ab)=\delta_m(a)\delta_m(b) \iff \gcd\left(\delta_m(a),\delta_p(b)\rig
 
     \subsubsection{空间多边形}
     \inputminted{cpp}{../src/计算几何/空间多边形.cpp}
+
+    \subsubsection{常用公式}
+    \begin{itemize}
+        \item \textbf{棱柱} \\ 
+        \noindent 记 $A$ 为底面积，$h$ 为高，$l$ 为棱长，$p$ 为直截面周长。
+        \begin{enumerate}
+            \item 体积：$V=Ah$
+            \item 侧面积：$S=lp$
+            \item 全面积：$T=S+2A$
+        \end{enumerate}
+
+        \item \textbf{棱锥} \\ 
+        \noindent 记 $A$ 为底面积，$h$ 为高，$l$ 为斜高（侧面图形的高），$p$ 为底面周长。
+        \begin{enumerate}
+            \item 体积：$V=\frac{Ah}{3}$
+            \item 侧面积：$S=\frac{lp}{2}$
+            \item 全面积：$T=S+A$
+        \end{enumerate}
+
+        \item \textbf{圆锥}
+        \begin{enumerate}
+            \item 母线：$l=\sqrt{h^2+r^2}$
+            \item 侧面积：$S=\pi rl$
+            \item 全面积：$T=\pi r(l+r)$
+            \item 体积：$V= \frac{\pi r^2h}{3}$
+        \end{enumerate}
+
+        \item \textbf{圆台} \\ 
+        \noindent 记 $r_1$ 为下底面半径，$r_2$ 为上底面半径。
+        \begin{enumerate}
+            \item 母线：$l=\sqrt{h^2+(r_1-r_2)^2}$
+            \item 侧面积：$S=\pi l (r_1+r_2)$
+            \item 全面积：$T=\pi r_1(l + r_1) + \pi r_2(l + r_2)$
+            \item 体积：$V=\frac{\pi(r_1^2+r_2^2+r_1r_2)h}{3}$
+        \end{enumerate}
+    \end{itemize}
 
     \subsubsection{常用结论}
     \begin{enumerate}
