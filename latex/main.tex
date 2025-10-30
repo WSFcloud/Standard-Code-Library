@@ -106,6 +106,7 @@
 \newcommand{\e}{\mathrm{e}}
 \renewcommand{\i}{\mathrm{i}}
 \renewcommand{\d}{\mathrm{d}}
+\newcommand{\lcm}{\mathrm{lcm}}
 
 % minted配色设置
 \definecolor{light-gray}{gray}{0.9}             % 定义浅灰色，灰度值为0.9
@@ -375,6 +376,7 @@
         \item 当 $x$ 为小于 $2^{n}$ 的正整数时，$2^{n} \bitand x=0$ 。
         \item 对于给定的 $X$ 和序列 $\{a_i\}$ 有：${X=(X \bitand a_1) \mid (X \bitand a_2) \mid \dots \mid (X \bitand a_n)}$。原理是 $\bitand$ 意味着取交集，$\mid$ 意味着取子集。
         \item 如果 $x, y$ 的某一位均为 $1$，那么 $x \oplus y < x + y $。
+        \item 对于一个序列 $\{a_i\}$，其前缀按位和、前缀按位异或中最多只有 $O(\log_2n)$ 个不同的取值。
     \end{enumerate} 
 
     \subsubsection{连续按位异或}
@@ -685,6 +687,25 @@
     
 \newpage
 \section{数论}
+\subsection{最大公因数（gcd）}
+\begin{enumerate}
+    \item $\gcd(a, b)=gcd(b, a\bmod b)$
+    \item $\gcd(a, b)=\gcd(a, a+b)=\gcd(a+b, b)=\gcd(a-b, b)$
+    \item $\gcd(a_1, a_2 \dots a_n)=\gcd(a_1, a_1+a_2 \dots a_1+a_2+ \dots +a_n)$
+    \item $\gcd(a_1, a_2 \dots a_n)=\gcd(a_1, a_1-a_2 \dots a_1-a_2- \dots -a_n)$
+    \item $\gcd(a_1, a_2 \dots a_n)=\gcd(a_1, a_2-a_1, a_3-a_2 \dots a_n-a_{n-1})$
+    \item $\gcd([l, r]) \geq \gcd([l, r+d]), 0 \leq d$
+    \item $\lcm(a, b) \cdot \gcd(a, b)=a \cdot b$
+    \item 若 $\gcd(a, b)=d$，则 $\gcd(\frac{a}{d}, \frac{b}{d})=1$
+    \item $\gcd(a, b)=\gcd(a+k \cdot b, b)$
+    \item $\gcd(a^n-1, a^m-1)=a^{\gcd(n, m)}-1$
+    \item $\gcd(a, b)=1 \Rightarrow \gcd(a^n-b^n, a^m-b^m)=a^{\gcd(n, m)}-b^{\gcd(n, m)}$
+    \item 对于 $G=\gcd \left(\binom{n}{1}, \binom{n}{2}, \dots , \binom{n}{n-1}\right)$，设 $p \in \mathbb{P}$，若 $n=p^k, (k>0)$，则 $G=p$，否则 $G=1$。
+    \item $(n+1) \cdot \lcm \left(\binom{n}{0}, \binom{n}{1}, \dots , \binom{n}{n}\right)=\lcm(1, 2, \dots, n+1)$
+    \item $\gcd(F_n, F_m)=F_{\gcd(n, m)}$，其中 $F$ 是斐波那契数列。
+    \item 对于一个序列 $\{a_i\}$，其前缀 $\gcd$ 中最多只有 $O(\log_2n)$ 个不同的取值。
+\end{enumerate}
+
 \subsection{扩展欧几里得（exgcd）}
 求 $x, y$ 使得 $ax+by=\gcd(a, b)$ ，返回值为 $\gcd(a, b)$
 \inputminted{cpp}{../src/数论/扩展欧几里得（exgcd）.cpp}
