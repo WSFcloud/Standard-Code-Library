@@ -400,6 +400,48 @@
 求函数 $f(x)$ 在区间 $[l, r]$ 上的定积分，$\rm{eps}$ 指定精度。
 \inputminted{cpp}{../src/数学/自适应辛普森积分.cpp}
 
+\subsection{博弈论}
+    \subsubsection{巴什博奕}
+    \paragraph{问题} 一堆 $n$ 个物品，两人轮流从这堆物品中取物，规定每次至少取一个，最多取 $m$ 个，拿到最后一个物品的一方获胜。
+    \paragraph{结论} 当 $n \bmod (m+1) = 0$ 时，先手必败，否则先手必胜。
+
+    \subsubsection{扩展巴什博弈}
+    \paragraph{问题} 一堆 $n$ 个物品，两人轮流从这堆物品中取物，规定每次可以取走 $X(a \leq x \leq b)$ 个，如果最后剩余物品的数量小于 $a$ 个，则不能再取，拿到最后一个物品的一方获胜。
+    \paragraph{结论}
+    \begin{itemize}
+        \item $n = k \cdot (a+b)$ 时，后手必胜。
+        \item $n = k \cdot (a+b)+R_1, (k \in \mathbb{N}^+,0 < R_1 < a)$ 时，后手必胜（这些数量不够再取一次，先手无法逆转局面）。
+        \item $n = k \cdot (a+b)+R_2, (k \in \mathbb{N}^+,a \le R_2 \le b)$ 时，先手必胜。
+        \item $n = k \cdot (a+b)+R_3, (k \in \mathbb{N}^+,b < R_3 < a + b)$ 时，先手必胜（这些数量不够再取一次，后手无法逆转局面）。
+    \end{itemize}
+
+    \subsubsection{Nim 博弈}
+    \paragraph{问题} 有 $n$ 堆物品，给出每一堆的物品数量，两名玩家轮流行动，每人每次任选一堆，取走正整数个物品，拿到最后一个物品的一方获胜（注：几个特点是\textbf{不能跨堆}、\textbf{不能不拿}）。
+    \paragraph{结论} 记初始时各堆物品的数量 $(A_1,A_2,\dots,A_n)$ ，定义 Nim 和：$S_n = A_1 \oplus A_2 \oplus \dots \oplus A_n$，当 $S_n = 0$ 时先手必败，反之先手必胜。
+
+    \subsubsection{Nim 游戏具体取法}
+        \paragraph{方法} 先计算出Nim 和，再对每一堆物品计算 $A_i \oplus S_n$ ，记为 $X_i$ 。
+        
+        若得到的值 $X_i<A_i$，$X_i$ 即为一个可行解，即剩下 $X_i$ 物品，取走 $A_i - X_i$ 个物品（这里取小于号是因为至少要取走 $1$ 个物品）。
+
+    \subsubsection{Moore's Nim 游戏（Nim-K 游戏）}
+        \paragraph{问题} 有 $n$ 堆物品，给出每一堆的物品数量，两名玩家轮流行动，每人每次任选不超过 $K$ 堆，对每堆都取走不同的正整数个物品，拿到最后一个物品的一方获胜。
+        \paragraph{结论} 把每一堆物品的物品数用二进制表示，定义 $P_i$ 为二进制第 $i$ 位上 $1$ 的个数。
+        
+        当每一位 $P_i$ \textbf{均不为} $K+1$ 的倍数时，先手必胜。
+
+    \subsubsection{Anti-Nim 游戏（反 Nim 游戏）}
+        \paragraph{问题} 有 $n$ 堆物品，给出每一堆的物品数量，两名玩家轮流行动，每人每次任选一堆，取走正整数个物品，拿到最后一个物品的一方\textbf{出局}。
+        \paragraph{结论} 
+        \begin{itemize}
+            \item 所有堆的物品数量均不超过 $1$，且 $S_n=0$ （也可看作“且有偶数堆”）时，先手必败。
+            \item 至少有一堆的物品数量大于 $1$，且 $S_n \neq 0$ 时，先手必胜。
+        \end{itemize}
+
+    \subsubsection{阶梯 - Nim 博弈}
+        \paragraph{问题} 有 $n$ 级台阶，每一级台阶上均有一定数量的物品，给出每一级物品的数量，两名玩家轮流行动，每人每次任选一级台阶，拿走正整数个物品放到下一级台阶中，已经拿到地面上的物品不能再拿，拿到最后一颗物品的一方获胜。
+        \paragraph{结论} 对\textbf{奇数}台阶做传统 Nim 博弈，当 $S_n=0$ 时先手必败，反之先手必胜。
+
 \subsection{常见数列}
 查表参见\detailedref{OEIS}。
     \subsubsection{斐波那契数列、卢卡斯数}
