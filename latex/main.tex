@@ -688,6 +688,7 @@
 \newpage
 \section{数论}
 \subsection{最大公因数（gcd）}
+\paragraph{常见性质}
 \begin{enumerate}
     \item $\gcd(a, b)=gcd(b, a\bmod b)$
     \item $\gcd(a, b)=\gcd(a, a+b)=\gcd(a+b, b)=\gcd(a-b, b)$
@@ -1176,13 +1177,16 @@ $$
 
 \subsection{网络流}
     \subsubsection{Dinic 最大流}
-    使用 Dinic 算法，理论最坏   复杂度为 $O(n^2m)$。
+    使用 Dinic 算法，理论最坏复杂度为 $O(n^2m)$。
     \inputminted{cpp}{../src/图论/Dinic最大流.cpp}
 
     \subsubsection{最小费用最大流}
     使用 SSP 算法，每次寻找增广路的时间复杂度为 $O(m \log n)$，设该网络的最大流为 $f$，则最坏时间复杂度为 $O(f \cdot m \log n)$。实际上可以构造 $m=n^2$，$f=2^{\frac{n}{2}}$ 的网络使得 SSP 算法的时间复杂度达到 $O(n^3 \cdot 2^{\frac{n}{2}})$。
     \inputminted{cpp}{../src/图论/最小费用最大流.cpp}
 
+    \subsubsection{2-SAT}
+    复杂度为 $O(n)$。
+    \inputminted{cpp}{../src/图论/2-SAT.cpp}
 
 \newpage
 \section{杂项}
