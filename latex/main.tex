@@ -351,6 +351,13 @@
 \subsection{线性基}
 \inputminted{cpp}{../src/数学/线性基.cpp}
 
+\subsection{Kitamasa}
+给定 $k$ 阶常系数齐次线性递推式 $f(n) = C_{k-1} \cdot f(n-1) + C_{k-2} \cdot f(n-2) + \dots + C_{0} \cdot f(n-k)$ 与初始值 $f(i) = a_i, (0 \leq i < k)$，计算 $f(n) \bmod p$，其中参数 $n$ 从 $0$ 开始。时间复杂度为 $O(k^2 \log n)$，其中 $k$ 是特征多项式系数 $C$ 的长度。
+\inputminted{cpp}{../src/数学/Kitamasa.cpp}
+
+% \subsection{Berlekamp-Massey}
+% 给定数列 $\{a_i\}$ 的前 $m$ 项，返回模 $p$ 意义下符合 $\{a_i\}$ 的最短常系数齐次线性递推式的系数 $C$。时间复杂度为 $O(m^2)$，结合 Kitamasa 可以做到预测数列第 $n$ 项（$n$ 从 $0$ 开始）的值，时间复杂度为 $O(m^2 \log n)$。
+
 \subsection{位运算}
     \subsubsection{常见性质}
     \newcommand{\bitand}{\mathrel{\&}}
