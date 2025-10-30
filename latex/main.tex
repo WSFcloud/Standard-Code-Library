@@ -873,43 +873,43 @@ $$\delta_m(ab)=\delta_m(a)\delta_m(b) \iff \gcd\left(\delta_m(a),\delta_p(b)\rig
     \begin{itemize}
         \item \textbf{三角形}
         \begin{enumerate}
-            \item 半周长：$P=\frac{a+b+c}{2}$
-            \item 面积：$S=\frac{1}{2}bc \sin A=rP$，$r$ 为三角形内切圆半径。
-            \item 正三角形面积：$S=\dfrac{\sqrt 3 a^2}{4}$
-            \item 海伦公式：$S=\sqrt{P(P-a)(P-b)(P-c)}$
-            \item 角 $A$ 到 $BC$ 边的中线长度: $\frac{\sqrt{2(b^2+c^2)-a^2}}{2} = \frac{\sqrt{b^2+c^2-2bccosA}}{2}$
-            \item 角 $A$ 的角平分线长度：$\frac{\sqrt{bc((b+c)^2-a^2)}}{b+c} = \frac{2bc \cos\frac{A}{2}}{b+c}$
-            \item $BC$ 边的高线长度：$H_a = b\sin C = c\sin B = \sqrt{b^2-(\frac{a^2+b^2-c^2}{2a})^2}$
-            \item 内切圆半径：$r = a \sin \frac{B}{2} \sin \frac{C}{2} \sin \frac{B+C}{2}=\frac{S}{P}$
-            \item 外接圆半径：$R = \frac{abc}{4S} =  \frac{a}{2 \sin A} = \frac{b}{2 \sin B} = \frac{c}{2 \sin C}$
+            \item 半周长：$\displaystyle P=\frac{a+b+c}{2}$
+            \item 面积：$\displaystyle S=\frac{1}{2}bc \sin A=rP$，$r$ 为三角形内切圆半径。
+            \item 正三角形面积：$\displaystyle S=\dfrac{\sqrt 3 a^2}{4}$
+            \item 海伦公式：$\displaystyle S=\sqrt{P(P-a)(P-b)(P-c)}$
+            \item 角 $A$ 到 $BC$ 边的中线长度: $\displaystyle \frac{\sqrt{2(b^2+c^2)-a^2}}{2} = \frac{\sqrt{b^2+c^2-2bc \cos A}}{2}$
+            \item 角 $A$ 的角平分线长度：$\displaystyle \frac{\sqrt{bc\left(\left(b+c\right)^2-a^2\right)}}{b+c} = \frac{2bc \cos\frac{A}{2}}{b+c}$
+            \item $BC$ 边的高线长度：$\displaystyle H_a = b\sin C = c\sin B = \sqrt{b^2-\left(\frac{a^2+b^2-c^2}{2a}\right)^2}$
+            \item 内切圆半径：$\displaystyle r = a \sin \frac{B}{2} \sin \frac{C}{2} \sin \frac{B+C}{2}=\frac{S}{P}$
+            \item 外接圆半径：$\displaystyle R = \frac{abc}{4S} =  \frac{a}{2 \sin A} = \frac{b}{2 \sin B} = \frac{c}{2 \sin C}$
         \end{enumerate}
 
         \item \textbf{四边形} \\
         \noindent 记 $D_1, D_2$ 为对角线，$M$ 为对角线中点连线，$A$ 为对角线夹角。
         \begin{enumerate}
-            \item $a^2+b^2+c^2+d^2=D_1^2+D_2^2+4M^2$
-            \item 面积：$S=\frac{D_1D_2 \sin A}{2}$
-            \item 若为圆的内接四边形，则：$ac+bd=D_1D_2$
-            \item 若为圆的内接四边形，则：$S=\sqrt{(P-a)(P-b)(P-c)(P-d)}$，其中 $P$ 为半周长。
+            \item $\displaystyle a^2+b^2+c^2+d^2=D_1^2+D_2^2+4M^2$
+            \item 面积：$\displaystyle S=\frac{D_1D_2 \sin A}{2}$
+            \item 若为圆的内接四边形，则：$\displaystyle ac+bd=D_1D_2$
+            \item 若为圆的内接四边形，则：$\displaystyle S=\sqrt{(P-a)(P-b)(P-c)(P-d)}$，其中 $P$ 为半周长。
         \end{enumerate}
 
         \item \textbf{正 $n$ 边形} \\
         \noindent $R$ 为外接圆半径，$r$ 为内切圆半径，$a$ 为边长。
         \begin{enumerate}
-            \item 边长：$a = 2\sqrt{R^2-r^2} = 2R \sin \frac{A}{2} = 2r \tan \frac{A}{2}$
-            \item 面积：$S = \frac{n \cdot a \cdot r}{2}=\frac{nR^2 \sin A}{2}$
-            \item 中心角：$A = \frac{2\pi}{n}$
-            \item 内角：$C=\frac{(n-2)\pi}{n}$
+            \item 边长：$\displaystyle a = 2\sqrt{R^2-r^2} = 2R \sin \frac{A}{2} = 2r \tan \frac{A}{2}$
+            \item 面积：$\displaystyle S = \frac{n \cdot a \cdot r}{2}=\frac{nR^2 \sin A}{2}$
+            \item 中心角：$\displaystyle A = \frac{2\pi}{n}$
+            \item 内角：$\displaystyle C=\frac{(n-2)\pi}{n}$
         \end{enumerate}
 
         \item \textbf{圆} \\
         \noindent $\theta$ 为对应的圆心角。
         \begin{enumerate}
-            \item 弧长：$l=r\theta$
-            \item 弦长：$a = 2 \sqrt{2hr - h^2} = 2r \sin \frac{\theta}{2}$，其中 $h$ 是圆心到弦的距离。
-            \item 弓形高：$h = r - \sqrt{r^2-\frac{a^2}{4}}=r(1- \cos \frac{\theta}{2})$
-            \item 扇形面积：$S_1 = \frac{rl}{2} = \frac{\theta r^2}{2}$
-            \item 弓形面积：$S_2 = \frac{r_1 - a(r-h)}{2} = r^2\frac{\theta- \sin \theta}{2}$
+            \item 弧长：$\displaystyle l=r\theta$
+            \item 弦长：$\displaystyle a = 2 \sqrt{2hr - h^2} = 2r \sin \frac{\theta}{2}$，其中 $h$ 是圆心到弦的距离。
+            \item 弓形高：$\displaystyle h = r - \sqrt{r^2-\frac{a^2}{4}}=r(1- \cos \frac{\theta}{2})$
+            \item 扇形面积：$\displaystyle S_1 = \frac{rl}{2} = \frac{\theta r^2}{2}$
+            \item 弓形面积：$\displaystyle S_2 = \frac{r_1 - a(r-h)}{2} = r^2\frac{\theta- \sin \theta}{2}$
         \end{enumerate}
     \end{itemize}
 
@@ -939,34 +939,34 @@ $$\delta_m(ab)=\delta_m(a)\delta_m(b) \iff \gcd\left(\delta_m(a),\delta_p(b)\rig
         \item \textbf{棱柱} \\ 
         \noindent 记 $A$ 为底面积，$h$ 为高，$l$ 为棱长，$p$ 为直截面周长。
         \begin{enumerate}
-            \item 体积：$V=Ah$
-            \item 侧面积：$S=lp$
-            \item 全面积：$T=S+2A$
+            \item 体积：$\displaystyle V=Ah$
+            \item 侧面积：$\displaystyle S=lp$
+            \item 全面积：$\displaystyle T=S+2A$
         \end{enumerate}
 
         \item \textbf{棱锥} \\ 
         \noindent 记 $A$ 为底面积，$h$ 为高，$l$ 为斜高（侧面图形的高），$p$ 为底面周长。
         \begin{enumerate}
-            \item 体积：$V=\frac{Ah}{3}$
-            \item 侧面积：$S=\frac{lp}{2}$
-            \item 全面积：$T=S+A$
+            \item 体积：$\displaystyle V=\frac{Ah}{3}$
+            \item 侧面积：$\displaystyle S=\frac{lp}{2}$
+            \item 全面积：$\displaystyle T=S+A$
         \end{enumerate}
 
         \item \textbf{圆锥}
         \begin{enumerate}
-            \item 母线：$l=\sqrt{h^2+r^2}$
-            \item 侧面积：$S=\pi rl$
-            \item 全面积：$T=\pi r(l+r)$
-            \item 体积：$V= \frac{\pi r^2h}{3}$
+            \item 母线：$\displaystyle l=\sqrt{h^2+r^2}$
+            \item 侧面积：$\displaystyle S=\pi rl$
+            \item 全面积：$\displaystyle T=\pi r(l+r)$
+            \item 体积：$\displaystyle V= \frac{\pi r^2h}{3}$
         \end{enumerate}
 
         \item \textbf{圆台} \\ 
         \noindent 记 $r_1$ 为下底面半径，$r_2$ 为上底面半径。
         \begin{enumerate}
-            \item 母线：$l=\sqrt{h^2+(r_1-r_2)^2}$
-            \item 侧面积：$S=\pi l (r_1+r_2)$
-            \item 全面积：$T=\pi r_1(l + r_1) + \pi r_2(l + r_2)$
-            \item 体积：$V=\frac{\pi(r_1^2+r_2^2+r_1r_2)h}{3}$
+            \item 母线：$\displaystyle l=\sqrt{h^2+(r_1-r_2)^2}$
+            \item 侧面积：$\displaystyle S=\pi l (r_1+r_2)$
+            \item 全面积：$\displaystyle T=\pi r_1(l + r_1) + \pi r_2(l + r_2)$
+            \item 体积：$\displaystyle V=\frac{\pi(r_1^2+r_2^2+r_1r_2)h}{3}$
         \end{enumerate}
     \end{itemize}
 
@@ -978,7 +978,7 @@ $$\delta_m(ab)=\delta_m(a)\delta_m(b) \iff \gcd\left(\delta_m(a),\delta_p(b)\rig
         \item 正棱台侧面积 $\frac{1}{2}(C_1+C_2)\cdot L$，其中 $C_1, C_2$ 为上下底周长，$L$ 为斜高（上下底对应的平行边的距离）。
         \item 对于棱锥有通用体积公式 $V=\frac{1}{3}S \cdot h$，当其恰好是棱长为 $l$ 的正 $n$ 棱锥时，有：
                 $$V=\frac{l^3 \cdot n}{12 \tan \frac{\pi}{n}} \cdot \sqrt{1-\frac{1}{4 \cdot \sin^2 \frac{\pi}{n}}}$$
-        \item 已知向量 $\vec{r}=\{x,y,z\}$，则该向量的三个方向余弦为：$\cos \alpha =\dfrac{x}{|\vec r|}=\dfrac{x}{\sqrt{x^2+y^2+z^2}}; \ \cos \beta = \dfrac{y}{|\vec r|};\ \cos \gamma =\dfrac{z}{|\vec r|}$，其中 $\alpha,\beta,\gamma\in [0,\pi]$，$\cos^2\alpha+\cos^2\beta+\cos^2\gamma=1$。
+        \item 已知向量 $\vec{r}=\{x,y,z\}$，则该向量的三个方向余弦为：$\displaystyle \cos \alpha =\dfrac{x}{|\vec r|}=\dfrac{x}{\sqrt{x^2+y^2+z^2}}; \ \cos \beta = \dfrac{y}{|\vec r|};\ \cos \gamma =\dfrac{z}{|\vec r|}$，其中 $\alpha,\beta,\gamma\in [0,\pi]$，$\cos^2\alpha+\cos^2\beta+\cos^2\gamma=1$。
     \end{enumerate}
 
 \subsection{平面最近点对}
@@ -1092,7 +1092,7 @@ $$
 
 \subsection{斜率优化}
 \begin{itemize}
-    \item 形如 $f(i) = \min\{f(j) + k(j) \cdot t(i)\}$ 这样的最值型决策，与先前决策相关，又包含 $i, j$ 元素乘积时，可以使用斜率优化。在决策 $i$ 时，考虑 $i$ 先前的两个决策 $x, y(x < y)$，且决策 $x$ 优于决策 $y$, 也就是 $f(x)+k(x) \cdot t(i) < f(y) + k(y)\cdot t(i)$。移项得到 $f(x)-f(y) < t(i) \cdot (k(y)-k(x))$，设 $k(i)$ 单调（如单调递减），则令斜率 $slope(x, y) = \frac{f(x)-f(y)}{k(y)-k(x)}$。
+    \item 形如 $f(i) = \min\{f(j) + k(j) \cdot t(i)\}$ 这样的最值型决策，与先前决策相关，又包含 $i, j$ 元素乘积时，可以使用斜率优化。在决策 $i$ 时，考虑 $i$ 先前的两个决策 $x, y(x < y)$，且决策 $x$ 优于决策 $y$, 也就是 $f(x)+k(x) \cdot t(i) < f(y) + k(y)\cdot t(i)$。移项得到 $f(x)-f(y) < t(i) \cdot (k(y)-k(x))$，设 $k(i)$ 单调（如单调递减），则令斜率 $\displaystyle slope(x, y) = \frac{f(x)-f(y)}{k(y)-k(x)}$。
     \item 如果满足 $slope(x, y) < t(i)$，则决策时选择 $x$ 比选择 $y$ 更优。如果 $k$ 是有序的，则维护一个保存下标、关于斜率的单调(递增)队列，满足：
     \begin{enumerate}
         \item 如果队首的两个元素斜率 $slope(l, l+1)$ 满足 $slope(l, l+1) \leq t(i)$，则队首元素就是最优决策点。
