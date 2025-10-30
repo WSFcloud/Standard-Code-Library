@@ -916,18 +916,6 @@ $$\delta_m(ab)=\delta_m(a)\delta_m(b) \iff \gcd\left(\delta_m(a),\delta_p(b)\rig
     $$f(v)=\max\{f(v), f(v-c_i)+w_i\}$$
     \inputminted{cpp}{../src/动态规划/0-1背包.cpp}
 
-\subsection{最长公共子序列}
-\paragraph{问题}给定一个长度为 $n$ 的序列 $a$ 和一个长度为 $m$ 的序列 $b$，求出一个最长的序列，使得该序列既是 $a$ 的子序列，也是 $b$ 的子序列。
-
-设 $f(i, j)$ 表示只考虑 $a$ 的前 $i$ 个元素，$b$ 的前 $j$ 个元素时的最长公共子序列的长度，状态转移方程为：
-$$
-f(i, j) = \begin{cases}
-    f(i-1, j-1)+1, & a_i = b_j \\
-    \max\{f(i-1, j), f(i, j-1)\}, & a_i\neq b_j
-\end{cases}
-$$
-时间复杂度和空间复杂度均为 $O(nm)$。
-
 \subsection{最长不下降子序列（LIS）}
 \paragraph{问题}给定一个长度为 $n$ 的序列 $a$，求出一个最长的 $a$ 的子序列，满足该子序列的后一个元素不小于前一个元素。
 
@@ -948,10 +936,31 @@ f(i, j) =
 \begin{cases} 
 0, & \text{if } i = 0 \text{ or } j = 0 \\
 f(i-1, j-1) + 1, & \text{if } i > 0, j > 0 \text{ and } a_i = b_j \\
-\max(f(i-1, j), f(i, j-1)), & \text{if } i > 0, j > 0 \text{ and } a_i \neq b_j
+\max\{f(i-1, j), f(i, j-1)\}, & \text{if } i > 0, j > 0 \text{ and } a_i \neq b_j
 \end{cases}
 $$
 \inputminted{cpp}{../src/动态规划/最长公共子序列（LCS）.cpp}
+
+\subsection{最大连续子段和}
+\paragraph{问题}给定一个长为 $n$ 的整数数组（可能包含负数），找到一个具有最大和的连续子数组（至少包含一个元素），并返回其最大和。
+
+状态转移方程为：
+$$
+f(i) = \max\{f(i-1)+a_i, a_i\}
+$$
+
+\subsection{斜率优化}
+\begin{itemize}
+    \item 形如 $f(i) = \min\{f(j) + k(j) \cdot t(i)\}$ 这样的最值型决策，与先前决策相关，又包含 $i, j$ 元素乘积时，可以使用斜率优化。在决策 $i$ 时，考虑 $i$ 先前的两个决策 $x, y(x < y)$，且决策 $x$ 优于决策 $y$, 也就是 $f(x)+k(x) \cdot t(i) < f(y) + k(y)\cdot t(i)$。移项得到 $f(x)-f(y) < t(i) \cdot (k(y)-k(x))$，设 $k(i)$ 单调（如单调递减），则令斜率 $slope(x, y) = \frac{f(x)-f(y)}{k(y)-k(x)}$。
+    \item 如果满足 $slope(x, y) < t(i)$，则决策时选择 $x$ 比选择 $y$ 更优。如果 $k$ 是有序的，则维护一个保存下标、关于斜率的单调(递增)队列，满足：
+    \begin{enumerate}
+        \item 如果队首的两个元素斜率 $slope(l, l+1)$ 满足 $slope(l, l+1) \leq t(i)$，则队首元素就是最优决策点。
+        \item 将当前决策点 $i$ 加入队尾时，如果 $slope(r-1, r) \geq slope(r-1, i)$, 则删除队尾元素后再插入。
+    \end{enumerate}
+\end{itemize}
+
+
+
 
 % \subsection{插头 DP}
 
