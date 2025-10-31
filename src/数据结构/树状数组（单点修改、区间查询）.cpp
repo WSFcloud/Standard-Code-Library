@@ -1,11 +1,12 @@
 template <typename T>
 struct Fenwick {
     int n;
-    vector<T> a;
+    vector<T> a; // 1 base
     Fenwick(int n_) :
-        n(n_), a(n_, T{}) {}
-    Fenwick(const vector<T> &v) :
-        n(int(v.size())), a(n, T{}) {
+        n(n_), a(n_ + 1, T{}) {}
+    // 传入数组 0 base
+    Fenwick(int n_, const vector<T> &v) :
+        n(n_), a(n_ + 1, T{}) {
         for (int i = 0; i < n; i++) {
             add(i, v[i]);
         }
@@ -13,14 +14,14 @@ struct Fenwick {
     // 下标 x 位置增加值 v
     void add(int x, const T &v) {
         for (int i = x + 1; i <= n; i += i & -i) {
-            a[i - 1] = a[i - 1] + v;
+            a[i] = a[i] + v;
         }
     }
     // 查询区间 [0, x) 的和
     T sum(int x) {
         T res{};
         for (int i = x; i > 0; i -= i & -i) {
-            res = res + a[i - 1];
+            res = res + a[i];
         }
         return res;
     }
@@ -32,12 +33,12 @@ struct Fenwick {
     int find(const T &k) {
         int x = 0;
         T cur{};
-        for (int i = 1 << int(log2(n)); i; i /= 2) {
-            if (x + i <= n && cur + a[x + i - 1] <= k) {
+        for (int i = 1 << int(log2(n)); i; i >>= 1) {
+            if (x + i <= n && cur + a[x + i] <= k) {
                 x += i;
-                cur = cur + a[x - 1];
+                cur = cur + a[x];
             }
         }
-        return x;
+        return x - 1;
     }
 };
